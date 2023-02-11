@@ -1,0 +1,32 @@
+
+button.ascending.order=Ordre croissant
+button.descending.order=Ordre decroissant
+button.do.not.sort=Desordonne
+button.add.element=Ajouter un numero
+button.remove.element=Supprimer l'index
+button.show.first.appearance=Montrer la premiere apparition
+button.show.all.greater=Toutes les majeures
+button.show.all.less=Toutes les inferieurs
+button.new.ascending.list=Nouvelle liste ascendante
+button.new.descending.list=Nouvelle liste deroulante
+button.new.unsorted.list=Nouvelle liste non ordonnee
+button.remove.even=Eliminer les pares
+button.remove.odd=Eliminer les impares
+button.remove.positive=Eliminer les positifs
+button.remove.negative=Eliminer les negatifs
+
+error.not.a.number='%s' n'est pas un nombre entier
+error.index.out.of.bounds=L'indice %s n'est pas valide. Essayez avec un index valide
+error.element.not.in.list=L'element %s n'existe pas dans la liste
+error.empty.list=Votre liste est vide. Ajoutez des elements avant d'effectuer cette operation.
+error.no.greater.elements=Aucun element superieur a '%s'
+error.no.smaller.elements=Aucun element inferieur a '%s'
+
+message.first.appearance=L'element %s apparait pour la premiere fois a l'indice %s
+
+text.empty.list.content=tete
+text.window.all.greater.title=Toutes les majeures
+text.window.all.greater.header=Tous les elements superieurs a '%s'
+text.window.all.less.title=Toutes les inferieurs
+text.window.all.less.header=Tous les elements inferieurs a '%s'
+text.size=Taille

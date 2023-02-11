@@ -1,0 +1,31 @@
+button.ascending.order=Orden ascendente
+button.descending.order=Orden descendente
+button.do.not.sort=Sin ordenar
+button.add.element=Agregar numero
+button.remove.element=Remover indice
+button.show.first.appearance=Primera aparicion
+button.show.all.greater=Ver mayores
+button.show.all.less=Ver menores
+button.new.ascending.list=Nueva lista ascendente
+button.new.descending.list=Nueva lista descendente
+button.new.unsorted.list=Nueva lista desordenada
+button.remove.even=Remover pares
+button.remove.odd=Remover impares
+button.remove.positive=Remover positivos
+button.remove.negative=Remover negativos
+
+error.not.a.number='%s' no es un entero, o es un entero demasiado grande.
+error.index.out.of.bounds=La lista no tiene indice %s, intenta con un indice valido.
+error.element.not.in.list=El elemento %s no existe en la lista.
+error.empty.list=Tu lista esta vacia. Agrega elementos antes de realizar esta operacion.
+error.no.greater.elements=No hay elementos mayores que '%s'
+error.no.smaller.elements=No hay elementos menores que '%s'
+
+message.first.appearance=El elemento %s aparece por primera vez en el indice %s
+
+text.empty.list.content=cabeza
+text.window.all.greater.title=Todos los mayores
+text.window.all.greater.header=Todos los elementos mayores que '%s'
+text.window.all.less.title=Todos los menores
+text.window.all.less.header=Todos los elementos menores que '%s'
+text.size=Elementos

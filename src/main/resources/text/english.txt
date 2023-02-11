@@ -1,0 +1,32 @@
+
+button.ascending.order=Ascending order
+button.descending.order=Descending order
+button.do.not.sort=Do not sort
+button.add.element=Add number
+button.remove.element=Remove index
+button.show.first.appearance=First appearance
+button.show.all.greater=Show all greater
+button.show.all.less=Show all less
+button.new.ascending.list=New ascending list
+button.new.descending.list=New descending list
+button.new.unsorted.list=New unsorted list
+button.remove.even=Remove even
+button.remove.odd=Remove odd
+button.remove.positive=Remove positive
+button.remove.negative=Remove negative
+
+error.not.a.number='%s' is not an integer, or it is too big.
+error.index.out.of.bounds=Index %s is out of bounds. Try with a valid index.
+error.element.not.in.list=The element %s is not in the list.
+error.empty.list=Your list is empty. Add some elements before using this operation.
+error.no.greater.elements=There are no elements greater than '%s'
+error.no.smaller.elements=There are no elements smaller than '%s'
+
+message.first.appearance=The element %s appears for the first time at index %s
+
+text.empty.list.content=head
+text.window.all.greater.title=Show all greater
+text.window.all.greater.header=All elements greater than '%s'
+text.window.all.less.title=Show all less
+text.window.all.less.header=All elements smaller than '%s'
+text.size=Size
