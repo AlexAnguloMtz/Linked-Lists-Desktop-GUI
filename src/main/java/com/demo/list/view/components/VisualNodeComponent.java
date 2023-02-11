@@ -101,7 +101,7 @@ public class VisualNodeComponent {
     private static Component indexPanel(int index) {
         var panel = new JPanel();
         var label = new JLabel(format("[%d]", index));
-        label.setFont(new Font("Arial", PLAIN, 30));
+        label.setFont(new Font("Arial", PLAIN, 25));
         label.setHorizontalAlignment(CENTER);
         panel.add(label);
         panel.setBackground(indexPanelBackground());

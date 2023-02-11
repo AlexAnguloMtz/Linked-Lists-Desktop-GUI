@@ -1,6 +1,7 @@
 package com.demo.list.list;
 
 import java.util.Comparator;
+import java.util.function.BiFunction;
 
 import static java.lang.String.format;
 
@@ -93,6 +94,29 @@ public class MyLinkedListImplementation<T> implements MyLinkedList<T> {
                 doSwitch(j.previous, j);
             }
         }
+    }
+
+    @Override
+    public boolean isSorted(BiFunction<T, T, Boolean> comparator) {
+        if (size() <= 1) return true;
+        for (Node<T> current = head; current.next != null; current = current.next) {
+            if (!comparator.apply(current.element, current.next.element)) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    @Override
+    public boolean allEqual() {
+        if (size() <= 1) return true;
+        T first = get(0);
+        for (Node<T> current = head; current != null; current = current.next) {
+            if (!first.equals(current.element)) {
+                return false;
+            }
+        }
+        return true;
     }
 
     private void addNewHead(T element) {

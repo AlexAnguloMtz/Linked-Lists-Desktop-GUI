@@ -340,4 +340,90 @@ public class MyLinkedListImplementationTest {
         assertEquals(5, list.indexOf(800));
     }
 
+    @Test
+    void shouldReturnTrueOnEmptyList() {
+        assertTrue(list.isSorted((x, y) -> (x - y) < 0));
+    }
+
+    @Test
+    void shouldReturnTrueWithOneElement() {
+        list.add(100);
+        assertTrue(list.isSorted((x, y) -> (x - y) < 0));
+    }
+
+    @Test
+    void shouldReturnTrueWithTwoSortedElements() {
+        list.add(100);
+        list.add(200);
+        assertTrue(list.isSorted((x, y) -> (x - y) < 0));
+    }
+
+    @Test
+    void shouldReturnTrueWithMultipleSortedElements() {
+        list.add(100);
+        list.add(200);
+        list.add(300);
+        list.add(400);
+        assertTrue(list.isSorted((x, y) -> (x - y) < 0));
+    }
+
+    @Test
+    void isSortedReturnsTrueWithAllElementsTheSame() {
+        list.add(100);
+        list.add(100);
+        list.add(100);
+        assertTrue(list.isSorted((x, y) -> (x - y) >= 0));
+    }
+
+    @Test
+    public void shouldReturnFalseWithTwoUnsortedElements() {
+        list.add(200);
+        list.add(100);
+        assertFalse(list.isSorted((x, y) -> (x - y) < 0));
+    }
+
+    @Test
+    public void shouldReturnFalseWithMultipleUnsortedElements() {
+        list.add(200);
+        list.add(700);
+        list.add(500);
+        list.add(300);
+        assertFalse(list.isSorted((x, y) -> (x - y) < 0));
+    }
+
+    @Test
+    void allEqualReturnsTrueOnEmptyList() {
+        assertTrue(list.allEqual());
+    }
+
+    @Test
+    void allEqualReturnsTrueWithOneElement() {
+        list.add(700);
+        assertTrue(list.allEqual());
+    }
+
+    @Test
+    void allEqualReturnsTrueWithTwoEqualElements() {
+        list.add(700);
+        list.add(700);
+        assertTrue(list.allEqual());
+    }
+
+    @Test
+    void allEqualReturnsTrueWithMultipleEqualElements() {
+        list.add(700);
+        list.add(700);
+        list.add(700);
+        list.add(700);
+        assertTrue(list.allEqual());
+    }
+
+    @Test
+    void allEqualReturnsFalseWhenNotAllElementsAreEqual() {
+        list.add(600);
+        list.add(700);
+        assertFalse(list.allEqual());
+    }
+
+
 }

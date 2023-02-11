@@ -1,6 +1,7 @@
 package com.demo.list.list;
 
 import java.util.Comparator;
+import java.util.function.BiFunction;
 
 public interface MyLinkedList <T> {
 
@@ -22,4 +23,7 @@ public interface MyLinkedList <T> {
 
     void sort(Comparator<T> comparator);
 
+    boolean isSorted(BiFunction<T, T, Boolean> comparator);
+
+    boolean allEqual();
 }

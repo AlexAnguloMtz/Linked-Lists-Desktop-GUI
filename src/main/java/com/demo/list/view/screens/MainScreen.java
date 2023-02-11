@@ -48,7 +48,8 @@ public class MainScreen extends Screen {
                 this::handleRemoveOddNumbers,
                 this::handleRemovePositiveNumbers,
                 this::handleRemoveNegativeNumbers,
-                new ListSizeComponent(state, textProvider.getText("text.size"))
+                new ListSizeComponent(state),
+                new SortingStateComponent(state, textProvider)
         );
     }
 

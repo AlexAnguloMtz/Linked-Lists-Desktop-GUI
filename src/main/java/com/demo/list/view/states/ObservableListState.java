@@ -10,6 +10,7 @@ import com.demo.list.util.IntegerUtils;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
+import java.util.function.BiFunction;
 import java.util.function.Predicate;
 
 import static java.lang.Integer.parseInt;
@@ -140,6 +141,10 @@ public class ObservableListState implements Observable {
         executeAndNotifyAllObservers(() -> setList(newList));
     }
 
+    public boolean isSorted(BiFunction<Comparable<Integer>, Comparable<Integer>, Boolean> comparator) {
+        return list.isSorted(comparator);
+    }
+
     private void setList(MyLinkedList<Comparable<Integer>> list) {
         this.list = list;
     }
@@ -166,4 +171,7 @@ public class ObservableListState implements Observable {
         return new MySortedLinkedList<>(comparison -> comparison < 0);
     }
 
+    public boolean allTheSame() {
+        return list.allEqual();
+    }
 }

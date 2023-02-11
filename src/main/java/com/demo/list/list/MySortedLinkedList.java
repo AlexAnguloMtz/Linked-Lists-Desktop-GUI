@@ -1,6 +1,7 @@
 package com.demo.list.list;
 
 import java.util.Comparator;
+import java.util.function.BiFunction;
 import java.util.function.Predicate;
 
 public class MySortedLinkedList<T extends Comparable<T>> implements MyLinkedList<Comparable<T>> {
@@ -61,6 +62,16 @@ public class MySortedLinkedList<T extends Comparable<T>> implements MyLinkedList
     @Override
     public void sort(Comparator<Comparable<T>> comparator) {
         list.sort(comparator);
+    }
+
+    @Override
+    public boolean isSorted(BiFunction<Comparable<T>, Comparable<T>, Boolean> comparator) {
+        return list.isSorted(comparator);
+    }
+
+    @Override
+    public boolean allEqual() {
+        return list.allEqual();
     }
 
     private int calculateIndex(Comparable<T> element) {
