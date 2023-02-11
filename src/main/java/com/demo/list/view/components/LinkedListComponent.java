@@ -1,6 +1,5 @@
 package com.demo.list.view.components;
 
-import com.demo.list.view.resources.Resources;
 import com.demo.list.view.states.ObservableListState;
 
 import javax.swing.*;
@@ -20,22 +19,20 @@ public class LinkedListComponent extends JPanel {
 
     private void addNodesAndArrows(ObservableListState observableListState, String emptyListContent) {
         if (observableListState.listSize() == 0) {
-            add(new VisualNodeComponent(emptyListContent));
+            add(VisualNodeComponent.withoutArrow(emptyListContent, 0));
             return;
         }
         if (observableListState.listSize() == 1) {
-            add(new VisualNodeComponent(element(observableListState, 0)));
+            add(VisualNodeComponent.withoutArrow(element(observableListState, 0), 0));
             return;
         }
         addNodesAndArrowsForSizeGreaterThanOne(observableListState);
     }
 
     private void addNodesAndArrowsForSizeGreaterThanOne(ObservableListState observableListState) {
-        for (int i = 0; i < observableListState.listSize(); i++) {
-            addComponent(new VisualNodeComponent(element(observableListState, i)));
-            if (i < observableListState.listSize() - 1) {
-                addComponent(arrow());
-            }
+        addComponent(VisualNodeComponent.withoutArrow(element(observableListState, 0), 0));
+        for (int i = 1; i < observableListState.listSize(); i++) {
+            addComponent(VisualNodeComponent.withArrow(element(observableListState, i), i));
         }
     }
 
@@ -45,12 +42,6 @@ public class LinkedListComponent extends JPanel {
 
     private String element(ObservableListState observableListState, int index) {
         return String.valueOf(observableListState.getListElement(index));
-    }
-
-    private Component arrow() {
-        Component arrow = Resources.arrow();
-        arrow.setMaximumSize(new Dimension(70, 40));
-        return arrow;
     }
 
     private void setPadding() {

@@ -1,4 +1,4 @@
-package com.demo.list.model.list;
+package com.demo.list.list;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

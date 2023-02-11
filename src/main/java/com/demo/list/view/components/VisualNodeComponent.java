@@ -1,33 +1,73 @@
 package com.demo.list.view.components;
 
+import com.demo.list.view.resources.Resources;
+
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import java.awt.*;
 
+import static com.demo.list.view.layouts.GridBagConstraintsBuilder.constraints;
 import static java.awt.Color.*;
 import static java.awt.Font.PLAIN;
+import static java.awt.GridBagConstraints.BOTH;
+import static java.lang.String.format;
 import static javax.swing.BorderFactory.createMatteBorder;
-import static javax.swing.BoxLayout.X_AXIS;
 
-public class VisualNodeComponent extends JPanel {
+public class VisualNodeComponent {
 
-    private final String content;
-
-    public VisualNodeComponent(String theContent) {
-        this.content = theContent;
-        setLayout(new BoxLayout(this, X_AXIS));
-        add(leftPanel(content));
-        add(rightPanel());
+    public static Component withArrow(String content, int index) {
+        var panel = initialPanel();
+        addPanelsWithArrow(panel, content, index);
+        return panel;
     }
 
-    @Override
-    public String toString() {
-        return "VisualNodeComponent{" +
-                "content='" + content + '\'' +
-                '}';
+    public static Component withoutArrow(String content, int index) {
+        var panel = initialPanel();
+        addPanelsWithoutArrow(panel, content, index);
+        return panel;
     }
 
-    private Component leftPanel(String theContent) {
+    private static void addPanelsWithArrow(JPanel panel, String content, int index) {
+        panel.add(
+            arrow(),
+            constraints(0, 0, 1, 1, BOTH, 1, 1)
+        );
+        panel.add(
+            leftPanel(content),
+            constraints(1, 0, 1, 1, BOTH, 0.5, 1)
+        );
+        panel.add(
+            rightPanel(),
+            constraints(2, 0, 1, 1, BOTH, 0.5, 1)
+        );
+        panel.add(
+             emptyInvisiblePanel(),
+             constraints(0, 1, 1, 1, BOTH, 1, 1)
+        );
+        panel.add(
+            lowerPanel(index),
+            constraints(1, 1, 2, 1, BOTH, 1, 1)
+        );
+    }
+
+    private static void addPanelsWithoutArrow(JPanel panel, String content, int index) {
+        panel.add(
+            leftPanel(content),
+            constraints(0,0,1,1,BOTH,1,1)
+        );
+
+        panel.add(
+            rightPanel(),
+            constraints(1,0,1,1,BOTH,1,1)
+        );
+
+        panel.add(
+            lowerPanel(index),
+            constraints(0,1,2,1,BOTH,1,1)
+        );
+    }
+
+    private static Component leftPanel(String theContent) {
         var leftPanel = new JPanel();
         leftPanel.setBorder(createMatteBorder(2, 2, 2, 1, BLACK));
         leftPanel.add(content(theContent));
@@ -35,7 +75,7 @@ public class VisualNodeComponent extends JPanel {
         return leftPanel;
     }
 
-    private Component rightPanel() {
+    private static Component rightPanel() {
         var rightPanel = new JPanel();
         rightPanel.add(content(null));
         rightPanel.setBorder(createMatteBorder(2, 1, 2, 2, BLACK));
@@ -43,7 +83,16 @@ public class VisualNodeComponent extends JPanel {
         return rightPanel;
     }
 
-    private Component content(String theContent) {
+    private static Component lowerPanel(int index) {
+        var panel = new JPanel();
+        var label = new JLabel(format("[%d]", index));
+        label.setFont(new Font("Arial", PLAIN, 30));
+        panel.add(label);
+        panel.setBackground(lowerPanelBackground());
+        return panel;
+    }
+
+    private static Component content(String theContent) {
         var content = new JLabel(theContent);
         content.setFont(new Font("Arial", PLAIN, 30));
         content.setBorder(new EmptyBorder(2, 6, 2, 6));
@@ -51,16 +100,37 @@ public class VisualNodeComponent extends JPanel {
         return content;
     }
 
-    private Color foreground() {
+    private static Color foreground() {
         return WHITE;
     }
 
-    private Color leftPanelBackground() {
+    private static Color leftPanelBackground() {
         return decode("#088587");
     }
 
-    private Color rightPanelBackground() {
+    private static Color rightPanelBackground() {
         return decode("#28BCC1");
+    }
+
+    private static Color lowerPanelBackground() {
+        return WHITE;
+    }
+
+    private static JPanel initialPanel() {
+        var panel = emptyInvisiblePanel();
+        panel.setLayout(new GridBagLayout());
+        panel.setBackground(null);
+        return panel;
+    }
+
+    private static JPanel emptyInvisiblePanel() {
+        var panel = new JPanel();
+        panel.setBackground(null);
+        return panel;
+    }
+
+    private static Component arrow() {
+        return Resources.arrow();
     }
 
 }

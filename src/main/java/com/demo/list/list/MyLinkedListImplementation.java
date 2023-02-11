@@ -1,4 +1,4 @@
-package com.demo.list.model.list;
+package com.demo.list.list;
 
 import static java.lang.String.format;
 

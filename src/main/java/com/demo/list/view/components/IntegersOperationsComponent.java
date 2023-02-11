@@ -45,7 +45,7 @@ public class IntegersOperationsComponent {
         return ClickableButton.create(
                 text,
                 actionListener,
-                decode("#000072"),
+                decode("#490049"),
                 WHITE,
                 new Font("Arial", PLAIN, 20)
         );

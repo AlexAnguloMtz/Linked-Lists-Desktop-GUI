@@ -5,58 +5,17 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="5acbd817-fa40-45e3-9976-6c6ca2d29a0b" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/demo/list/Main.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/demo/list/configuration/PropertiesLoader.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/demo/list/configuration/language/Language.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/demo/list/configuration/language/TextProvider.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/demo/list/model/list/MyLinkedList.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/demo/list/model/list/MyLinkedListImplementation.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/demo/list/model/list/MySortedLinkedList.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/demo/list/model/list/Node.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/demo/list/observer/Observable.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/demo/list/observer/Observer.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/demo/list/util/IntegerUtils.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/demo/list/util/StringUtils.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/demo/list/view/LinkedListDemoGUI.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/demo/list/view/ScreenManager.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/demo/list/view/WindowConfigurer.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/demo/list/view/components/AddElementToListComponent.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/demo/list/view/components/BasePanel.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/demo/list/view/components/ClickableButton.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/demo/list/view/components/GenericOperationComponent.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/demo/list/view/components/IntegersOperationsComponent.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/demo/list/view/components/LanguageButton.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/demo/list/view/components/LanguageSelectionComponent.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/demo/list/view/components/LinkedListAdminPanelComponent.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/demo/list/view/components/LinkedListComponent.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/demo/list/view/components/LinkedListVisualizationComponent.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/demo/list/view/components/ListSizeComponent.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/demo/list/view/components/MessageModalComponent.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/demo/list/view/components/RemoveElementFromListComponent.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/demo/list/view/components/ResetListButtonsComponent.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/demo/list/view/components/ScrollableLinkedListComponent.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/demo/list/view/components/ScrollableLinkedListWindowComponent.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/demo/list/view/components/ShowAllGreaterElementsComponent.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/demo/list/view/components/ShowAllLessElementsComponent.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/demo/list/view/components/ShowFirstAppearanceComponent.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/demo/list/view/components/VisualNodeComponent.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/demo/list/view/layouts/GridBagConstraintsBuilder.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/demo/list/view/resources/Resources.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/demo/list/view/screens/LanguageSelectionScreen.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/demo/list/view/screens/MainScreen.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/demo/list/view/screens/Screen.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/demo/list/view/states/ObservableListState.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/text/english.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/text/french.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/text/spanish.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/com/demo/list/model/list/MyLinkedListImplementationTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/demo/list/model/list/MyLinkedList.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/demo/list/list/MyLinkedList.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/demo/list/model/list/MyLinkedListImplementation.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/demo/list/list/MyLinkedListImplementation.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/demo/list/model/list/MySortedLinkedList.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/demo/list/list/MySortedLinkedList.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/demo/list/model/list/Node.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/demo/list/list/Node.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/demo/list/view/components/IntegersOperationsComponent.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/demo/list/view/components/IntegersOperationsComponent.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/demo/list/view/components/LinkedListAdminPanelComponent.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/demo/list/view/components/LinkedListAdminPanelComponent.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/demo/list/view/components/LinkedListComponent.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/demo/list/view/components/LinkedListComponent.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/demo/list/view/components/VisualNodeComponent.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/demo/list/view/components/VisualNodeComponent.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/demo/list/view/states/ObservableListState.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/demo/list/view/states/ObservableListState.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/com/demo/list/model/list/MyLinkedListImplementationTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/demo/list/list/MyLinkedListImplementationTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

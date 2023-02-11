@@ -1,8 +1,8 @@
 package com.demo.list.view.states;
 
-import com.demo.list.model.list.MySortedLinkedList;
-import com.demo.list.model.list.MyLinkedList;
-import com.demo.list.model.list.MyLinkedListImplementation;
+import com.demo.list.list.MySortedLinkedList;
+import com.demo.list.list.MyLinkedList;
+import com.demo.list.list.MyLinkedListImplementation;
 import com.demo.list.observer.Observable;
 import com.demo.list.observer.Observer;
 import com.demo.list.util.IntegerUtils;
