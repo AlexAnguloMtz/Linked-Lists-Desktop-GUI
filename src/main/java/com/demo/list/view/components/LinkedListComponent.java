@@ -19,20 +19,20 @@ public class LinkedListComponent extends JPanel {
 
     private void addNodesAndArrows(ObservableListState observableListState, String emptyListContent) {
         if (observableListState.listSize() == 0) {
-            add(VisualNodeComponent.withoutArrow(emptyListContent, 0));
+            add(VisualNodeComponent.withoutArrows(emptyListContent, 0));
             return;
         }
         if (observableListState.listSize() == 1) {
-            add(VisualNodeComponent.withoutArrow(element(observableListState, 0), 0));
+            add(VisualNodeComponent.withoutArrows(element(observableListState, 0), 0));
             return;
         }
         addNodesAndArrowsForSizeGreaterThanOne(observableListState);
     }
 
     private void addNodesAndArrowsForSizeGreaterThanOne(ObservableListState observableListState) {
-        addComponent(VisualNodeComponent.withoutArrow(element(observableListState, 0), 0));
+        addComponent(VisualNodeComponent.withoutArrows(element(observableListState, 0), 0));
         for (int i = 1; i < observableListState.listSize(); i++) {
-            addComponent(VisualNodeComponent.withArrow(element(observableListState, i), i));
+            addComponent(VisualNodeComponent.withArrows(element(observableListState, i), i));
         }
     }
 
