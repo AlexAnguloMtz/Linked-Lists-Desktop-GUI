@@ -1,5 +1,7 @@
 package com.demo.list.list;
 
+import java.util.Comparator;
+
 public interface MyLinkedList <T> {
 
     void add(T element);
@@ -17,5 +19,7 @@ public interface MyLinkedList <T> {
     boolean isEmpty();
 
     T get(int index);
+
+    void sort(Comparator<T> comparator);
 
 }

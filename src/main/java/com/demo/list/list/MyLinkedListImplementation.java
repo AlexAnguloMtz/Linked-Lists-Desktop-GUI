@@ -1,5 +1,7 @@
 package com.demo.list.list;
 
+import java.util.Comparator;
+
 import static java.lang.String.format;
 
 public class MyLinkedListImplementation<T> implements MyLinkedList<T> {
@@ -39,7 +41,7 @@ public class MyLinkedListImplementation<T> implements MyLinkedList<T> {
     public void remove(int index) {
         checkIsInBoundsExclusive(index);
         if (index == 0) {
-            head = head.next;
+            removeHead();
         }
         else {
             removeForIndexGreaterThanZero(index);
@@ -83,19 +85,38 @@ public class MyLinkedListImplementation<T> implements MyLinkedList<T> {
         return (index == 0) ? head.getData() : getForIndexGreaterThanZero(index);
     }
 
+    @Override
+    public void sort(Comparator<T> comparator) {
+        if (size() <= 1) return;
+        for (Node<T> i = head; i.next != null; i = i.next) {
+            for (Node<T> j = i.next; (j.previous != null && shouldSwitch(comparator, j.previous, j)); j = j.previous) {
+                doSwitch(j.previous, j);
+            }
+        }
+    }
+
     private void addNewHead(T element) {
+        if (head == null) {
+            head = new Node<>(element);
+            return;
+        }
         Node<T> temp = head;
         head = new Node<>(element);
         head.next = temp;
-
+        head.next.previous = head;
     }
+
     private void addForIndexGreaterThanZero(int index, T element) {
         Node<T> current = head;
         for (int i = 0; i < size(); i++) {
             if ((i + 1) == index) {
                 Node<T> temp = current.next;
                 current.next = new Node<>(element);
+                current.next.previous = current;
                 current.next.next = temp;
+                if (current.next.next != null) {
+                    current.next.next.previous = current.next;
+                }
                 break;
             }
             current = current.next;
@@ -108,6 +129,7 @@ public class MyLinkedListImplementation<T> implements MyLinkedList<T> {
             current = current.next;
         }
         current.next = new Node<>(element);
+        current.next.previous = current;
     }
 
     private void checkIsInBoundsExclusive(int index) {
@@ -128,6 +150,9 @@ public class MyLinkedListImplementation<T> implements MyLinkedList<T> {
         Node<T> current = head;
         for (int i = 0; i < size(); i++) {
             if (i + 1 == index) {
+                if (current.next.next != null) {
+                    current.next.next.previous = current;
+                }
                 current.next = current.next.next;
                 break;
             }
@@ -146,11 +171,33 @@ public class MyLinkedListImplementation<T> implements MyLinkedList<T> {
         throw new IllegalStateException(format("Could not retrieve element at index %s", index));
     }
 
+    private boolean shouldSwitch(Comparator<T> comparator, Node<T> first, Node<T> second) {
+        return comparator.compare(first.element, second.element) > 0;
+    }
+
+    private void doSwitch(Node<T> first, Node<T> second) {
+        T temp = first.element;
+        first.element = second.element;
+        second.element = temp;
+    }
+
+    private void removeHead() {
+        if (size() == 1) {
+            head = null;
+        }
+        else {
+            head.next.previous = head.previous;
+            head = head.next;
+        }
+    }
+
     private static class Node <T> {
 
         private T element;
 
         private Node<T> next;
+
+        private Node<T> previous;
 
         public Node(T element) {
             this.element = element;
@@ -163,6 +210,12 @@ public class MyLinkedListImplementation<T> implements MyLinkedList<T> {
         public boolean contains(T element) {
             return getData().equals(element);
         }
+
+        @Override
+        public String toString() {
+            return format("Node{element=%s}", element);
+        }
+
     }
 
 }

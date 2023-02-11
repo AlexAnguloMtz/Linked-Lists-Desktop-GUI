@@ -1,5 +1,6 @@
 package com.demo.list.list;
 
+import java.util.Comparator;
 import java.util.function.Predicate;
 
 public class MySortedLinkedList<T extends Comparable<T>> implements MyLinkedList<Comparable<T>> {
@@ -55,6 +56,11 @@ public class MySortedLinkedList<T extends Comparable<T>> implements MyLinkedList
     @Override
     public Comparable<T> get(int index) {
         return list.get(index);
+    }
+
+    @Override
+    public void sort(Comparator<Comparable<T>> comparator) {
+        list.sort(comparator);
     }
 
     private int calculateIndex(Comparable<T> element) {

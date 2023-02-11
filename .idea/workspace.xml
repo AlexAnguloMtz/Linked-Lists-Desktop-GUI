@@ -6,16 +6,11 @@
   <component name="ChangeListManager">
     <list default="true" id="5acbd817-fa40-45e3-9976-6c6ca2d29a0b" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/demo/list/model/list/MyLinkedList.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/demo/list/list/MyLinkedList.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/demo/list/model/list/MyLinkedListImplementation.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/demo/list/list/MyLinkedListImplementation.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/demo/list/model/list/MySortedLinkedList.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/demo/list/list/MySortedLinkedList.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/demo/list/model/list/Node.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/demo/list/list/Node.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/demo/list/view/components/IntegersOperationsComponent.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/demo/list/view/components/IntegersOperationsComponent.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/demo/list/view/components/LinkedListAdminPanelComponent.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/demo/list/view/components/LinkedListAdminPanelComponent.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/demo/list/view/components/LinkedListComponent.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/demo/list/view/components/LinkedListComponent.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/demo/list/view/components/VisualNodeComponent.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/demo/list/view/components/VisualNodeComponent.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/demo/list/view/states/ObservableListState.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/demo/list/view/states/ObservableListState.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/com/demo/list/model/list/MyLinkedListImplementationTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/demo/list/list/MyLinkedListImplementationTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/demo/list/list/MyLinkedList.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/demo/list/list/MyLinkedList.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/demo/list/list/MyLinkedListImplementation.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/demo/list/list/MyLinkedListImplementation.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/demo/list/list/MySortedLinkedList.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/demo/list/list/MySortedLinkedList.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/demo/list/list/Node.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/com/demo/list/list/MyLinkedListImplementationTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/demo/list/list/MyLinkedListImplementationTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -59,6 +54,8 @@
       <recent name="com.demo.list.view.providers" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\raul_\Documents\Programming\linked-lists-demo\src\main\resources\colors" />
+      <recent name="C:\Users\raul_\Documents\Programming\linked-lists-demo\src\main\resources" />
       <recent name="C:\Users\raul_\Documents\Programming\linked-lists-demo\src\main\resources\img" />
       <recent name="C:\Users\raul_\Documents\Programming\linked-lists-demo\src\main\resources\flags" />
       <recent name="C:\Users\raul_\Documents\Programming\linked-lists-demo\src\main\resources\text" />
@@ -82,60 +79,60 @@
       <module name="linked-lists-demo" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="com.demo.list.model.list.*" />
+          <option name="PATTERN" value="com.demo.list.list.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="PACKAGE_NAME" value="com.demo.list.model.list" />
-      <option name="MAIN_CLASS_NAME" value="com.demo.list.model.list.MyLinkedListImplementationTest" />
+      <option name="PACKAGE_NAME" value="com.demo.list.list" />
+      <option name="MAIN_CLASS_NAME" value="com.demo.list.list.MyLinkedListImplementationTest" />
       <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="MyLinkedListImplementationTest.indexOfWithMoreThanOneElement" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="MyLinkedListImplementationTest.afterAddingElementAtFirstIndexReturnsSizeCorrectly" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="linked-lists-demo" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="com.demo.list.model.list.*" />
+          <option name="PATTERN" value="com.demo.list.list.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="PACKAGE_NAME" value="com.demo.list.model.list" />
-      <option name="MAIN_CLASS_NAME" value="com.demo.list.model.list.MyLinkedListImplementationTest" />
-      <option name="METHOD_NAME" value="indexOfWithMoreThanOneElement" />
+      <option name="PACKAGE_NAME" value="com.demo.list.list" />
+      <option name="MAIN_CLASS_NAME" value="com.demo.list.list.MyLinkedListImplementationTest" />
+      <option name="METHOD_NAME" value="afterAddingElementAtFirstIndexReturnsSizeCorrectly" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="MyLinkedListImplementationTest.removesLastElementWithMultipleElements" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="MyLinkedListImplementationTest.allElementsMoveUpOneIndexAfterAddingNewFirstElement" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="linked-lists-demo" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="com.demo.list.model.list.*" />
+          <option name="PATTERN" value="com.demo.list.list.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="PACKAGE_NAME" value="com.demo.list.model.list" />
-      <option name="MAIN_CLASS_NAME" value="com.demo.list.model.list.MyLinkedListImplementationTest" />
-      <option name="METHOD_NAME" value="removesLastElementWithMultipleElements" />
+      <option name="PACKAGE_NAME" value="com.demo.list.list" />
+      <option name="MAIN_CLASS_NAME" value="com.demo.list.list.MyLinkedListImplementationTest" />
+      <option name="METHOD_NAME" value="allElementsMoveUpOneIndexAfterAddingNewFirstElement" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="MyLinkedListImplementationTest.shouldAddElementAtLastIndex" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="MyLinkedListImplementationTest.shouldSortListWithMultipleElements" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="linked-lists-demo" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="com.demo.list.model.list.*" />
+          <option name="PATTERN" value="com.demo.list.list.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="PACKAGE_NAME" value="com.demo.list.model.list" />
-      <option name="MAIN_CLASS_NAME" value="com.demo.list.model.list.MyLinkedListImplementationTest" />
-      <option name="METHOD_NAME" value="shouldAddElementAtLastIndex" />
+      <option name="PACKAGE_NAME" value="com.demo.list.list" />
+      <option name="MAIN_CLASS_NAME" value="com.demo.list.list.MyLinkedListImplementationTest" />
+      <option name="METHOD_NAME" value="shouldSortListWithMultipleElements" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -144,10 +141,10 @@
     <recent_temporary>
       <list>
         <item itemvalue="Application.Main" />
+        <item itemvalue="JUnit.MyLinkedListImplementationTest.shouldSortListWithMultipleElements" />
         <item itemvalue="JUnit.MyLinkedListImplementationTest" />
-        <item itemvalue="JUnit.MyLinkedListImplementationTest.removesLastElementWithMultipleElements" />
-        <item itemvalue="JUnit.MyLinkedListImplementationTest.shouldAddElementAtLastIndex" />
-        <item itemvalue="JUnit.MyLinkedListImplementationTest.indexOfWithMoreThanOneElement" />
+        <item itemvalue="JUnit.MyLinkedListImplementationTest.afterAddingElementAtFirstIndexReturnsSizeCorrectly" />
+        <item itemvalue="JUnit.MyLinkedListImplementationTest.allElementsMoveUpOneIndexAfterAddingNewFirstElement" />
       </list>
     </recent_temporary>
   </component>
