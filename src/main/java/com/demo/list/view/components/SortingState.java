@@ -12,12 +12,12 @@ import static java.awt.Color.*;
 import static java.awt.Font.PLAIN;
 import static javax.swing.SwingConstants.CENTER;
 
-public class SortingStateComponent extends JPanel implements Observer {
+public class SortingState extends JPanel implements Observer {
 
     private final ObservableListState observableListState;
     private final TextProvider textProvider;
 
-    public SortingStateComponent(ObservableListState observableListState, TextProvider textProvider) {
+    public SortingState(ObservableListState observableListState, TextProvider textProvider) {
         this.observableListState = observableListState;
         this.textProvider = textProvider;
         observableListState.addObserver(this);
@@ -107,7 +107,7 @@ public class SortingStateComponent extends JPanel implements Observer {
     }
 
     private String getText(String key) {
-        return textProvider.getText(key);
+        return textProvider.text(key);
     }
 
     private boolean allTheSame() {

@@ -2,7 +2,6 @@ package com.demo.list.view.components;
 
 import com.demo.list.configuration.language.TextProvider;
 
-import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import java.awt.*;
 import java.awt.event.ActionListener;
@@ -11,9 +10,9 @@ import java.util.function.Consumer;
 import static com.demo.list.view.layouts.GridBagConstraintsBuilder.constraints;
 import static java.awt.GridBagConstraints.BOTH;
 
-public class LinkedListAdminPanelComponent extends BasePanel {
-    public LinkedListAdminPanelComponent(
-            TextProvider textProvider,
+public class LinkedListAdminPanel extends BasePanel {
+    public LinkedListAdminPanel(
+            TextProvider strings,
             Consumer<String> addElementValueConsumer,
             Consumer<String> removeElementValueConsumer,
             Consumer<String> showFirstAppearanceValueConsumer,
@@ -33,17 +32,17 @@ public class LinkedListAdminPanelComponent extends BasePanel {
         setLayout(new GridBagLayout());
 
         add(
-                AddElementToListComponent.create(textProvider, addElementValueConsumer),
+                ButtonWithTextField.create(strings.text("button.add.element"), addElementValueConsumer),
                 constraints(0,0,1,2, BOTH,1,1)
         );
 
         add(
-                RemoveElementFromListComponent.create(textProvider, removeElementValueConsumer),
+                RemoveElementFromList.create(strings, removeElementValueConsumer),
                 constraints(1,0,1,2, BOTH,1,1)
         );
 
         add(
-                ShowFirstAppearanceComponent.create(textProvider, showFirstAppearanceValueConsumer),
+                ShowFirstAppearanceComponent.create(strings, showFirstAppearanceValueConsumer),
                 constraints(2,0,1,2, BOTH,1,1)
         );
 
@@ -53,17 +52,17 @@ public class LinkedListAdminPanelComponent extends BasePanel {
         );
 
         add(
-                ShowAllGreaterElementsComponent.create(textProvider, showAllGreaterValueConsumer),
+                ShowAllGreaterElements.create(strings, showAllGreaterValueConsumer),
                 constraints(0,2,1,2, BOTH,1,1)
         );
 
         add(
-                ShowAllLessElementsComponent.create(textProvider, showAllLessValueConsumer),
+                ShowAllLessElementsComponent.create(strings, showAllLessValueConsumer),
                 constraints(1,2,1,2, BOTH,1,1)
         );
         add(
-                IntegersOperationsComponent.create(
-                        textProvider,
+                IntegersOperations.create(
+                        strings,
                         onRemoveEvenNumbers,
                         onRemoveOddNumbers,
                         onRemovePositiveNumbers,
@@ -72,7 +71,7 @@ public class LinkedListAdminPanelComponent extends BasePanel {
                 constraints(2,2,1,2, BOTH,1,1)
         );
         add(
-                ResetListButtonsComponent.create(textProvider, onNewAscendingList, onNewDescendingList, onNewUnsortedList),
+                ResetListButtons.create(strings, onNewAscendingList, onNewDescendingList, onNewUnsortedList),
                 constraints(3,3,1,2, BOTH,1,1)
         );
 

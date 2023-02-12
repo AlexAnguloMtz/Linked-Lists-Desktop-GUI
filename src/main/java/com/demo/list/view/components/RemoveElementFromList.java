@@ -2,19 +2,17 @@ package com.demo.list.view.components;
 
 import com.demo.list.configuration.language.TextProvider;
 
-import javax.swing.*;
-
 import java.awt.*;
 import java.util.function.Consumer;
 
-public class RemoveElementFromListComponent {
+public class RemoveElementFromList {
 
     public static Component create(
             TextProvider textProvider,
             Consumer<String> textFieldValueConsumer
     ) {
-        return GenericOperationComponent.create(
-                textProvider.getText("button.remove.element"),
+        return ButtonWithTextField.create(
+                textProvider.text("button.remove.element"),
                 textFieldValueConsumer
         );
     }

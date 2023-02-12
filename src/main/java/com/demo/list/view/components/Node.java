@@ -14,7 +14,7 @@ import static java.lang.String.format;
 import static javax.swing.BorderFactory.createMatteBorder;
 import static javax.swing.SwingConstants.CENTER;
 
-public class VisualNodeComponent {
+public class Node {
 
     public static Component withArrows(String content, int index) {
         var panel = initialPanel();

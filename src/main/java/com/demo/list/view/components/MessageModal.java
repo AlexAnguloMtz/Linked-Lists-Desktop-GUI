@@ -6,7 +6,7 @@ import java.awt.*;
 import static java.awt.Font.BOLD;
 import static javax.swing.JOptionPane.*;
 
-public class MessageModalComponent {
+public class MessageModal {
 
     public void showError(String message) {
         showMessageDialog(null, label(message), "ERROR", ERROR_MESSAGE);

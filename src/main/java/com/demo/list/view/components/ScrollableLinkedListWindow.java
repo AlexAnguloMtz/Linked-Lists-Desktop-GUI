@@ -12,7 +12,7 @@ import static java.awt.Dialog.ModalityType.DOCUMENT_MODAL;
 import static java.awt.Font.BOLD;
 import static javax.swing.WindowConstants.DISPOSE_ON_CLOSE;
 
-public class ScrollableLinkedListWindowComponent {
+public class ScrollableLinkedListWindow {
 
     public void show(
             String title,
@@ -49,7 +49,7 @@ public class ScrollableLinkedListWindowComponent {
             String emptyListText
     ) {
         dialog.add(configuredLabel(header), NORTH);
-        dialog.add(new ScrollableLinkedListComponent(observableListState, emptyListText), CENTER);
+        dialog.add(new ScrollableLinkedList(observableListState, emptyListText), CENTER);
     }
 
 }

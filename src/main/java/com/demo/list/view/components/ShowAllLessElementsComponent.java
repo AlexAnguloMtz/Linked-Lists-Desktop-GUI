@@ -11,8 +11,8 @@ public class ShowAllLessElementsComponent {
             TextProvider textProvider,
             Consumer<String> textFieldValueConsumer
     ) {
-        return GenericOperationComponent.create(
-                textProvider.getText("button.show.all.less"),
+        return ButtonWithTextField.create(
+                textProvider.text("button.show.all.less"),
                 textFieldValueConsumer
         );
     }

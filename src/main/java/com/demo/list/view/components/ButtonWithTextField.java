@@ -10,7 +10,7 @@ import static java.awt.Color.decode;
 import static java.awt.Font.PLAIN;
 import static javax.swing.SwingConstants.CENTER;
 
-public class GenericOperationComponent {
+public class ButtonWithTextField {
 
     public static Component create(
             String buttonText,

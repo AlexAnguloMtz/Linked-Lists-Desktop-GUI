@@ -4,18 +4,17 @@ import com.demo.list.observer.Observer;
 import com.demo.list.view.states.ObservableListState;
 
 import javax.swing.*;
-import javax.swing.border.EmptyBorder;
 import java.awt.*;
 
 import static java.awt.BorderLayout.CENTER;
 import static java.awt.Color.WHITE;
 import static java.awt.Font.PLAIN;
 
-public class ListSizeComponent extends JPanel implements Observer {
+public class ListSize extends JPanel implements Observer {
 
     private final ObservableListState state;
 
-    public ListSizeComponent(ObservableListState state) {
+    public ListSize(ObservableListState state) {
         this.state = state;
         state.addObserver(this);
         configureLayout();

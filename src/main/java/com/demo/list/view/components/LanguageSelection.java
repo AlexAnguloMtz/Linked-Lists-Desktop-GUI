@@ -11,11 +11,11 @@ import static javax.swing.Box.createRigidArea;
 import static javax.swing.BoxLayout.X_AXIS;
 import static javax.swing.BoxLayout.Y_AXIS;
 
-public class LanguageSelectionComponent extends BasePanel {
+public class LanguageSelection extends BasePanel {
 
     private static final int SPACE_BETWEEN_BUTTONS = 30;
 
-    public LanguageSelectionComponent(
+    public LanguageSelection(
             ActionListener onSpanish,
             ActionListener onEnglish,
             ActionListener onFrench

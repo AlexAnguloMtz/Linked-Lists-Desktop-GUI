@@ -6,14 +6,14 @@ import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 
 
-public class ScrollableLinkedListComponent extends JScrollPane {
+public class ScrollableLinkedList extends JScrollPane {
 
-    public ScrollableLinkedListComponent(
+    public ScrollableLinkedList(
             ObservableListState observableListState,
             String emptyListText
     ) {
         super(
-                new LinkedListComponent(observableListState, emptyListText),
+                new LinkedList(observableListState, emptyListText),
                 VERTICAL_SCROLLBAR_NEVER,
                 HORIZONTAL_SCROLLBAR_AS_NEEDED
         );

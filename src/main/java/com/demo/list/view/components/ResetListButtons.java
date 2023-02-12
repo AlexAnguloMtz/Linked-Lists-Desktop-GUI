@@ -12,7 +12,7 @@ import static java.awt.Color.decode;
 import static java.awt.Font.PLAIN;
 import static java.awt.GridBagConstraints.BOTH;
 
-public class ResetListButtonsComponent {
+public class ResetListButtons {
 
     public static Component create(
             TextProvider textProvider,
@@ -34,17 +34,17 @@ public class ResetListButtonsComponent {
     ) {
         panel.setLayout(new GridBagLayout());
         panel.add(
-                button(textProvider.getText("button.new.ascending.list"), onNewAscendingList),
+                button(textProvider.text("button.new.ascending.list"), onNewAscendingList),
                 constraints(0,0,1,1, BOTH,1,1)
         );
 
         panel.add(
-                button(textProvider.getText("button.new.descending.list"), onNewDescendingList),
+                button(textProvider.text("button.new.descending.list"), onNewDescendingList),
                 constraints(0,1,1,1, BOTH,1,1)
         );
 
         panel.add(
-                button(textProvider.getText("button.new.unsorted.list"), onNewUnsortedList),
+                button(textProvider.text("button.new.unsorted.list"), onNewUnsortedList),
                 constraints(0,2,1,1, BOTH,1,1)
         );
     }

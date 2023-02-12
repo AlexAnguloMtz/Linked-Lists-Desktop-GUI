@@ -1,6 +1,6 @@
 package com.demo.list.view.screens;
 
-import com.demo.list.view.components.LanguageSelectionComponent;
+import com.demo.list.view.components.LanguageSelection;
 
 import java.awt.*;
 import java.awt.event.ActionListener;
@@ -40,7 +40,7 @@ public class LanguageSelectionScreen extends Screen {
             ActionListener onSpanish, ActionListener onEnglish, ActionListener onFrench) {
 
         add(
-                new LanguageSelectionComponent(onSpanish, onEnglish, onFrench),
+                new LanguageSelection(onSpanish, onEnglish, onFrench),
                 BorderLayout.CENTER
         );
 

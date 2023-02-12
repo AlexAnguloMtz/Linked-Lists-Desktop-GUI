@@ -17,14 +17,14 @@ public class MainScreen extends Screen {
 
     private final TextProvider textProvider;
     private final ObservableListState state;
-    private final MessageModalComponent messageModal;
-    private final ScrollableLinkedListWindowComponent scrollableLinkedListWindowComponent;
+    private final MessageModal messageModal;
+    private final ScrollableLinkedListWindow scrollableLinkedListWindowComponent;
 
     public MainScreen(TextProvider textProvider) {
         this.textProvider = textProvider;
         this.state = new ObservableListState();
-        this.messageModal = new MessageModalComponent();
-        this.scrollableLinkedListWindowComponent = new ScrollableLinkedListWindowComponent();
+        this.messageModal = new MessageModal();
+        this.scrollableLinkedListWindowComponent = new ScrollableLinkedListWindow();
         addChildrenComponents();
     }
 
@@ -34,7 +34,7 @@ public class MainScreen extends Screen {
     }
 
     private Component linkedListsOperationComponent() {
-        return new LinkedListAdminPanelComponent(
+        return new LinkedListAdminPanel(
                 textProvider,
                 this::handleAddElementValue,
                 this::handleRemoveElementValue,
@@ -48,8 +48,8 @@ public class MainScreen extends Screen {
                 this::handleRemoveOddNumbers,
                 this::handleRemovePositiveNumbers,
                 this::handleRemoveNegativeNumbers,
-                new ListSizeComponent(state),
-                new SortingStateComponent(state, textProvider)
+                new ListSize(state),
+                new SortingState(state, textProvider)
         );
     }
 
@@ -78,7 +78,7 @@ public class MainScreen extends Screen {
     }
 
     private void handleIndexOutOfBounds(int index) {
-        showError(format(textProvider.getText("error.index.out.of.bounds"), index));
+        showError(format(textProvider.text("error.index.out.of.bounds"), index));
     }
 
     private void handleShowFirstAppearance(String input) {
@@ -142,22 +142,22 @@ public class MainScreen extends Screen {
     }
 
     private void handleNoGreaterElement(int number) {
-        showError(format(textProvider.getText("error.no.greater.elements"), number));
+        showError(format(textProvider.text("error.no.greater.elements"), number));
     }
 
     private void handleNoSmallerElement(int number) {
-        showError(format(textProvider.getText("error.no.smaller.elements"), number));
+        showError(format(textProvider.text("error.no.smaller.elements"), number));
     }
 
     private void handleEmptyList() {
-        showError(textProvider.getText("error.empty.list"));
+        showError(textProvider.text("error.empty.list"));
     }
 
     private void showAllGreaterThan(int number) {
         scrollableLinkedListWindowComponent.show(
-            textProvider.getText("text.window.all.greater.title"),
-            format(textProvider.getText("text.window.all.greater.header"), number),
-            textProvider.getText("text.empty.list.content"),
+            textProvider.text("text.window.all.greater.title"),
+            format(textProvider.text("text.window.all.greater.header"), number),
+            textProvider.text("text.empty.list.content"),
             this,
             state.withAllGreaterThan(number)
         );
@@ -165,9 +165,9 @@ public class MainScreen extends Screen {
 
     private void showAllLessThan(int number) {
         scrollableLinkedListWindowComponent.show(
-                textProvider.getText("text.window.all.less.title"),
-                format(textProvider.getText("text.window.all.less.header"), number),
-                textProvider.getText("text.empty.list.content"),
+                textProvider.text("text.window.all.less.title"),
+                format(textProvider.text("text.window.all.less.header"), number),
+                textProvider.text("text.empty.list.content"),
                 this,
                 state.withAllLessThan(number)
         );
@@ -175,7 +175,7 @@ public class MainScreen extends Screen {
 
     private String firstAppearanceMessage(String input) {
         return format(
-            textProvider.getText("message.first.appearance"),
+            textProvider.text("message.first.appearance"),
             input,
             state.firstAppearance(parseInt(input))
         );
@@ -192,7 +192,7 @@ public class MainScreen extends Screen {
     private void addChildrenComponents() {
         setLayout(new GridBagLayout());
         add(
-                new LinkedListVisualizationComponent(textProvider, state),
+                new LinkedListPanel(textProvider, state),
                 constraints(0, 0, 1, 1, BOTH, 1, 0.5)
         );
         add(
@@ -202,11 +202,11 @@ public class MainScreen extends Screen {
     }
 
     private void handleNonIntegerInput(String input) {
-        showError(format(textProvider.getText("error.not.a.number"), input));
+        showError(format(textProvider.text("error.not.a.number"), input));
     }
 
     private void handleNonExistentElement(int number) {
-        showError(format(textProvider.getText("error.element.not.in.list"), number));
+        showError(format(textProvider.text("error.element.not.in.list"), number));
     }
 
     private void handleNewUnsortedList(ActionEvent actionEvent) {
