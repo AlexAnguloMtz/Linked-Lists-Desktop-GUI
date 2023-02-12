@@ -44,15 +44,15 @@ public class ClickableButton {
         var button = new JButton(text);
         customizeCursor(button);
         button.addActionListener(actionListener);
-        if (font != null) {
+        if (font != null)
             button.setFont(font);
-        }
-        if (background != null) {
+
+        if (background != null)
             button.setBackground(background);
-        }
-        if (foreground != null) {
+
+        if (foreground != null)
             button.setForeground(foreground);
-        }
+
         return button;
     }
 

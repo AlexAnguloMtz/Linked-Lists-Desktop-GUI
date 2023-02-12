@@ -11,7 +11,7 @@ public class ShowFirstAppearanceComponent {
             TextProvider textProvider,
             Consumer<String> textFieldValueConsumer
     ) {
-        return new GenericOperationComponent(
+        return GenericOperationComponent.create(
                 textProvider.getText("button.show.first.appearance"),
                 textFieldValueConsumer
         );

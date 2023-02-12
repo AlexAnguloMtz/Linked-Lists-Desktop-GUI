@@ -13,7 +13,7 @@ public class RemoveElementFromListComponent {
             TextProvider textProvider,
             Consumer<String> textFieldValueConsumer
     ) {
-        return new GenericOperationComponent(
+        return GenericOperationComponent.create(
                 textProvider.getText("button.remove.element"),
                 textFieldValueConsumer
         );

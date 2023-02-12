@@ -3,9 +3,6 @@ package com.demo.list.view.components;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.util.LinkedList;
 import java.util.function.Consumer;
 
 import static java.awt.Color.WHITE;
@@ -13,71 +10,46 @@ import static java.awt.Color.decode;
 import static java.awt.Font.PLAIN;
 import static javax.swing.SwingConstants.CENTER;
 
-public class GenericOperationComponent extends BasePanel {
+public class GenericOperationComponent {
 
-    private final JTextField textField;
-    private final Consumer<String> textFieldValueConsumer;
-
-    public GenericOperationComponent(
+    public static Component create(
             String buttonText,
             Consumer<String> textFieldValueConsumer
     ) {
-        this.textField = textField();
-        this.textFieldValueConsumer = textFieldValueConsumer;
-        configureComponentLayout();
-        addChildComponents(buttonText);
+        var textField = textField();
+        return new Column(
+                textField,
+                button(buttonText, textField, textFieldValueConsumer)
+        );
     }
 
-    private void addChildComponents(String buttonText) {
-        add(this.textField);
-        add(button(buttonText));
+    private static JTextField textField() {
+        return SimpleTextField.create(
+                new Font("Arial", PLAIN, 35),
+                CENTER
+        );
     }
 
-    private Component button(String buttonText) {
-        var button = ClickableButton.create(buttonText);
-        customizeLayout(button);
-        customizeStyle(button);
-        button.addActionListener(this::handlePrimaryAction);
-        return button;
+    private static Component button(
+            String buttonText,
+            JTextField textField,
+            Consumer<String> textFieldValueConsumer
+    ) {
+        return ClickableButton.create(
+                buttonText,
+                click -> handlePrimaryAction(textFieldValueConsumer, textField),
+                decode("#490049"),
+                WHITE,
+                new Font("Arial", PLAIN, 23)
+        );
     }
 
-    private void resetTextField() {
+    private static void handlePrimaryAction(
+            Consumer<String> textFieldValueConsumer,
+            JTextField textField
+    ) {
+        textFieldValueConsumer.accept(textField.getText());
         textField.setText("");
-    }
-
-    private void handlePrimaryAction(ActionEvent actionEvent) {
-        textFieldValueConsumer.accept(getTextFieldValue());
-        resetTextField();
-    }
-
-    private JTextField textField() {
-        var textField = new JTextField();
-        customizeLayout(textField);
-        return textField;
-    }
-
-    private void configureComponentLayout() {
-        setLayout(new GridLayout(0, 1));
-        setAlignmentX(CENTER_ALIGNMENT);
-    }
-
-    private void customizeLayout(JButton button) {
-        button.setHorizontalAlignment(CENTER);
-        button.setFont(new Font("Arial", PLAIN, 23));
-    }
-
-    private void customizeStyle(JButton button) {
-        button.setBackground(decode("#490049"));
-        button.setForeground(WHITE);
-    }
-
-    private void customizeLayout(JTextField textField) {
-        textField.setHorizontalAlignment(CENTER);
-        textField.setFont(new Font("Arial", PLAIN, 35));
-    }
-
-    private String getTextFieldValue() {
-        return textField.getText();
     }
 
 }

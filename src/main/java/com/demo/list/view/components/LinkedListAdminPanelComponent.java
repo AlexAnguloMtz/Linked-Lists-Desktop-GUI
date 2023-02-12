@@ -48,7 +48,7 @@ public class LinkedListAdminPanelComponent extends BasePanel {
         );
 
         add(
-                verticalGridPanel(listSizeComponent, sortingStateComponent),
+                new Column(listSizeComponent, sortingStateComponent),
                 constraints(3,0,1,2, BOTH,1,1)
         );
 
@@ -80,15 +80,8 @@ public class LinkedListAdminPanelComponent extends BasePanel {
 
     }
 
-    private Component verticalGridPanel(Component listSizeComponent, Component sortingStateComponent) {
-        var panel = new JPanel();
-        panel.setLayout(new GridLayout(0, 1));
-        panel.add(listSizeComponent);
-        panel.add(sortingStateComponent);
-        return panel;
-    }
-
     private void setPadding() {
         setBorder(new EmptyBorder(10, 20, 20, 20));
     }
+
 }

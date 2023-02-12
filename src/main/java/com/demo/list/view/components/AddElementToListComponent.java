@@ -11,7 +11,7 @@ class AddElementToListComponent {
             TextProvider textProvider,
             Consumer<String> textFieldValueConsumer
     ) {
-        return new GenericOperationComponent(
+        return GenericOperationComponent.create(
                 textProvider.getText("button.add.element"),
                 textFieldValueConsumer
         );
