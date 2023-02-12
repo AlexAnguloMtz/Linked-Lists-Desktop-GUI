@@ -22,9 +22,9 @@ public class Node {
         return panel;
     }
 
-    public static Component withoutArrows(String content, int index) {
+    public static Component withoutArrows(String content, int index, boolean isIndexVisible) {
         var panel = initialPanel();
-        addPanelsWithoutArrow(panel, content, index);
+        addPanelsWithoutArrow(panel, content, index, isIndexVisible);
         return panel;
     }
 
@@ -50,12 +50,12 @@ public class Node {
             constraints(0, 1, 1, 1, BOTH, 0.5, 1)
         );
         panel.add(
-            indexPanel(index),
+            indexPanel(index, true),
             constraints(1, 1, 3, 1, BOTH, 0.5, 1)
         );
     }
 
-    private static void addPanelsWithoutArrow(JPanel panel, String content, int index) {
+    private static void addPanelsWithoutArrow(JPanel panel, String content, int index, boolean isIndexVisible) {
         panel.add(
             leftPointerPanel(),
             constraints(0, 0, 1, 1, BOTH, 1, 1)
@@ -69,7 +69,7 @@ public class Node {
             constraints(2,0,1,1,BOTH,1,1)
         );
         panel.add(
-            indexPanel(index),
+            indexPanel(index, isIndexVisible),
             constraints(0,1,3,1,BOTH,1,1)
         );
     }
@@ -98,11 +98,12 @@ public class Node {
         return panel;
     }
 
-    private static Component indexPanel(int index) {
+    private static Component indexPanel(int index, boolean isIndexVisible) {
         var panel = new JPanel();
         var label = new JLabel(format("[%d]", index));
         label.setFont(new Font("Arial", PLAIN, 25));
         label.setHorizontalAlignment(CENTER);
+        label.setForeground(isIndexVisible ? BLACK : WHITE);
         panel.add(label);
         panel.setBackground(indexPanelBackground());
         return panel;

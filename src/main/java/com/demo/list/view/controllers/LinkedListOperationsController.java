@@ -7,6 +7,7 @@ import com.demo.list.view.states.ObservableListState;
 import java.awt.event.ActionEvent;
 import java.util.function.Consumer;
 
+import static com.demo.list.util.Decision.decide;
 import static com.demo.list.util.IntegerUtils.isInteger;
 import static java.lang.Integer.parseInt;
 import static java.lang.String.format;
@@ -14,16 +15,16 @@ import static java.lang.String.format;
 public class LinkedListOperationsController {
 
     private final ObservableListState state;
-    private final AppProperties strings;
+    private final AppProperties props;
     private final MainScreen screen;
 
     public LinkedListOperationsController(
             ObservableListState state,
-            AppProperties strings,
+            AppProperties props,
             MainScreen screen
     ) {
         this.state = state;
-        this.strings = strings;
+        this.props = props;
         this.screen = screen;
     }
 
@@ -56,11 +57,11 @@ public class LinkedListOperationsController {
     }
 
     public void onShowAllGreater(String input) {
-        handleIntegerInputAction(input, this::showAllGreater);
+        handleIntegerInputAction(input, this::tryShowAllGreater);
     }
 
     public void onShowAllLess(String input) {
-        handleIntegerInputAction(input, this::showAllLess);
+        handleIntegerInputAction(input, this::tryShowAllLess);
     }
 
     public void onNewUnsortedList(ActionEvent actionEvent) {
@@ -76,23 +77,15 @@ public class LinkedListOperationsController {
     }
 
     private void handleNonIntegerInput(String input) {
-        showError(format(strings.string("error.not.a.number"), input));
+        showFormattedError("error.not.a.number", input);
     }
 
     private void handleIndexOutOfBounds(int index) {
-        showError(format(strings.string("error.index.out.of.bounds"), index));
-    }
-
-    private void handleNoGreaterElement(int number) {
-        showError(format(strings.string("error.no.greater.elements"), number));
-    }
-
-    private void handleNoSmallerElement(int number) {
-        showError(format(strings.string("error.no.smaller.elements"), number));
+        showFormattedError("error.index.out.of.bounds", index);
     }
 
     private void handleEmptyList() {
-        showError(strings.string("error.empty.list"));
+        showError(string("error.empty.list"));
     }
 
     private boolean isOutOfBounds(int index) {
@@ -104,63 +97,71 @@ public class LinkedListOperationsController {
     }
 
     private void handleNonExistentElement(int number) {
-        showError(format(strings.string("error.element.not.in.list"), number));
+        showFormattedError("error.element.not.in.list", number);
+    }
+
+    private void handleIntegerInputAction(String input, Consumer<Integer> consumer) {
+        decide(
+                isInteger(input),
+                () -> consumer.accept(parseInt(input)),
+                () -> handleNonIntegerInput(input)
+        );
+    }
+
+    private void removeElement(int number) {
+        decide(
+                (!isOutOfBounds(number)),
+                () -> state.removeElementFromListAtIndex(number),
+                () -> handleIndexOutOfBounds(number)
+        );
+    }
+
+    private void showFirstAppearance(int number) {
+        decide(
+                state.listContains(number),
+                () -> screen.showFirstAppearance(number),
+                () -> handleNonExistentElement(number)
+        );
+    }
+
+    private void tryShowAllGreater(int number) {
+        handleListSizeDependentAction(() -> showAllGreaterThan(number));
+    }
+
+    private void tryShowAllLess(int number) {
+        handleListSizeDependentAction(() -> showAllLessThan(number));
+    }
+
+    private void handleListSizeDependentAction(Runnable runnable) {
+        decide((!state.isListEmpty()), runnable, this::handleEmptyList);
+    }
+
+    private void showAllGreaterThan(int number) {
+        decide(
+                state.max() > number,
+                () -> screen.showAllGreaterThan(number),
+                () -> showFormattedError("error.no.greater.elements", number)
+        );
+    }
+
+    private void showAllLessThan(int number) {
+        decide(
+                state.min() < number,
+                () -> screen.showAllLessThan(number),
+                () -> showFormattedError("error.no.smaller.elements", number)
+        );
+    }
+
+    private void showFormattedError(String key, Object...objects) {
+        showError(format(string(key), objects));
     }
 
     private void showError(String error) {
         screen.showError(error);
     }
 
-    private void handleIntegerInputAction(String input, Consumer<Integer> consumer) {
-        if (!isInteger(input)) {
-            handleNonIntegerInput(input);
-            return;
-        }
-        consumer.accept(parseInt(input));
-    }
-
-    private void removeElement(int number) {
-        if (isOutOfBounds(number))  {
-            handleIndexOutOfBounds(number);
-            return;
-        }
-        state.removeElementFromListAtIndex(number);
-    }
-
-    private void showFirstAppearance(int number) {
-        if (!state.listContains(number)) {
-            handleNonExistentElement(number);
-            return;
-        }
-        screen.showFirstAppearance(number);
-    }
-
-    private void showAllGreater(int number) {
-        handleListSizeDependentAction(() -> {
-            if (state.max() <= number) {
-                handleNoGreaterElement(number);
-                return;
-            }
-            screen.showAllGreaterThan(number);
-        });
-    }
-
-    private void showAllLess(int number) {
-        handleListSizeDependentAction(() -> {
-            if (state.min() >= number) {
-                handleNoSmallerElement(number);
-                return;
-            }
-            screen.showAllLessThan(number);
-        });
-    }
-
-    private void handleListSizeDependentAction(Runnable runnable) {
-        if (state.isListEmpty()) {
-            handleEmptyList();
-            return;
-        }
-        runnable.run();
+    private String string(String key) {
+        return props.string(key);
     }
 
 }

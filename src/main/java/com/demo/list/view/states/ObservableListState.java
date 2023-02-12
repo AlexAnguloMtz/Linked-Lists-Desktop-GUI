@@ -1,19 +1,16 @@
 package com.demo.list.view.states;
 
-import com.demo.list.list.MySortedLinkedList;
 import com.demo.list.list.MyLinkedList;
 import com.demo.list.list.MyLinkedListImplementation;
+import com.demo.list.list.MySortedLinkedList;
 import com.demo.list.observer.Observable;
 import com.demo.list.observer.Observer;
-import com.demo.list.util.IntegerUtils;
 
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
 import java.util.function.BiFunction;
 import java.util.function.Predicate;
-
-import static java.lang.Integer.parseInt;
 
 public class ObservableListState implements Observable {
 
