@@ -1,6 +1,6 @@
 package com.demo.list.view.components;
 
-import com.demo.list.configuration.language.TextProvider;
+import com.demo.list.configuration.language.AppProperties;
 import com.demo.list.observer.Observer;
 import com.demo.list.view.states.ObservableListState;
 
@@ -12,13 +12,13 @@ import static java.awt.GridBagConstraints.BOTH;
 public class LinkedListContainer extends BasePanel implements Observer {
 
     private final ObservableListState observableListState;
-    private final TextProvider textProvider;
+    private final AppProperties props;
 
     public LinkedListContainer(
-            TextProvider textProvider,
+            AppProperties textProvider,
             ObservableListState observableListState
     ) {
-        this.textProvider = textProvider;
+        this.props = textProvider;
         this.observableListState = observableListState;
         observableListState.addObserver(this);
         setLayout(new GridBagLayout());
@@ -38,11 +38,14 @@ public class LinkedListContainer extends BasePanel implements Observer {
     }
 
     private void addChildrenComponents() {
-        add(linkedListVisualizationPanel(), constraints(0, 0, 1, 1, BOTH, 1, 1));
+        add(
+                linkedListVisualizationPanel(),
+                constraints(0, 0, 1, 1, BOTH, 1, 1)
+        );
     }
 
     private String getText(String key) {
-        return textProvider.get(key);
+        return props.string(key);
     }
 
 }

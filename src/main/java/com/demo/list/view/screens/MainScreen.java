@@ -1,6 +1,6 @@
 package com.demo.list.view.screens;
 
-import com.demo.list.configuration.language.TextProvider;
+import com.demo.list.configuration.language.AppProperties;
 import com.demo.list.view.components.*;
 import com.demo.list.view.controllers.LinkedListOperationsController;
 import com.demo.list.view.states.ObservableListState;
@@ -13,12 +13,12 @@ import static java.lang.String.format;
 
 public class MainScreen extends Screen {
 
-    private final TextProvider strings;
+    private final AppProperties strings;
     private final ObservableListState state;
     private final ScrollableLinkedListWindow scrollableLinkedListWindowComponent;
     private final MessageModal messageModal;
 
-    public MainScreen(TextProvider textProvider) {
+    public MainScreen(AppProperties textProvider) {
         this.strings = textProvider;
         this.state = new ObservableListState();
         this.scrollableLinkedListWindowComponent = new ScrollableLinkedListWindow();
@@ -33,9 +33,9 @@ public class MainScreen extends Screen {
 
     public void showAllLessThan(int number) {
         scrollableLinkedListWindowComponent.show(
-                strings.get("text.window.all.less.title"),
-                format(strings.get("text.window.all.less.header"), number),
-                strings.get("text.empty.list.content"),
+                strings.string("text.window.all.less.title"),
+                format(strings.string("text.window.all.less.header"), number),
+                strings.string("text.empty.list.content"),
                 this,
                 state.withAllLessThan(number)
         );
@@ -43,9 +43,9 @@ public class MainScreen extends Screen {
 
     public void showAllGreaterThan(int number) {
         scrollableLinkedListWindowComponent.show(
-                strings.get("text.window.all.greater.title"),
-                format(strings.get("text.window.all.greater.header"), number),
-                strings.get("text.empty.list.content"),
+                strings.string("text.window.all.greater.title"),
+                format(strings.string("text.window.all.greater.header"), number),
+                strings.string("text.empty.list.content"),
                 this,
                 state.withAllGreaterThan(number)
         );
@@ -65,7 +65,7 @@ public class MainScreen extends Screen {
 
     private String firstAppearanceMessage(int number) {
         return format(
-                strings.get("message.first.appearance"),
+                strings.string("message.first.appearance"),
                 number,
                 state.firstAppearance(number)
         );

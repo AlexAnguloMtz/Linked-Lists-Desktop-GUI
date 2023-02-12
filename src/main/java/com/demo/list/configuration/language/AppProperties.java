@@ -1,22 +1,28 @@
 package com.demo.list.configuration.language;
 
+import java.awt.*;
 import java.util.Properties;
 
-public class TextProvider {
+import static java.awt.Color.decode;
+
+public class AppProperties {
 
     private final Properties spanishProperties;
     private final Properties englishProperties;
     private final Properties frenchProperties;
+    private final Properties colorProperties;
     private Properties activeLanguageProperties;
 
-    public TextProvider(
+    public AppProperties(
             Properties englishProperties,
             Properties spanishProperties,
-            Properties frenchProperties
+            Properties frenchProperties,
+            Properties colorProperties
     ) {
         this.englishProperties = englishProperties;
         this.spanishProperties = spanishProperties;
         this.frenchProperties = frenchProperties;
+        this.colorProperties = colorProperties;
     }
 
     public void setLanguage(Language language) {
@@ -27,8 +33,12 @@ public class TextProvider {
         };
     }
 
-    public String get(String key) {
+    public String string(String key) {
         return (String) activeLanguageProperties.get(key);
+    }
+
+    public Color color(String key) {
+        return decode((String) colorProperties.get(key));
     }
 
 }

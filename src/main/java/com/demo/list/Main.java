@@ -2,7 +2,7 @@ package com.demo.list;
 
 import com.demo.list.configuration.PropertiesLoader;
 import com.demo.list.view.LinkedListDemoGUI;
-import com.demo.list.configuration.language.TextProvider;
+import com.demo.list.configuration.language.AppProperties;
 
 import java.awt.*;
 
@@ -24,12 +24,13 @@ public class Main {
         );
     }
 
-    private static TextProvider textProvider() {
+    private static AppProperties textProvider() {
         var propertiesLoader = new PropertiesLoader();
-        return new TextProvider(
-                propertiesLoader.loadProperties("text/english.txt"),
-                propertiesLoader.loadProperties("text/spanish.txt"),
-                propertiesLoader.loadProperties("text/french.txt")
+        return new AppProperties(
+                propertiesLoader.loadProperties("text/english.properties"),
+                propertiesLoader.loadProperties("text/spanish.properties"),
+                propertiesLoader.loadProperties("text/french.properties"),
+                propertiesLoader.loadProperties("colors/colors.properties")
         );
     }
 

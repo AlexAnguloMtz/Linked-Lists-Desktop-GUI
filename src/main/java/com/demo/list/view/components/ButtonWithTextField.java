@@ -1,12 +1,9 @@
 package com.demo.list.view.components;
 
-
 import javax.swing.*;
 import java.awt.*;
 import java.util.function.Consumer;
 
-import static java.awt.Color.WHITE;
-import static java.awt.Color.decode;
 import static java.awt.Font.PLAIN;
 import static javax.swing.SwingConstants.CENTER;
 
@@ -14,19 +11,23 @@ public class ButtonWithTextField {
 
     public static Component create(
             String buttonText,
+            Color buttonBackground,
+            Color buttonForeground,
             Consumer<String> textFieldValueConsumer
     ) {
-        return componentWith(buttonText, textField(), textFieldValueConsumer);
+        return componentWith(buttonText, buttonBackground, buttonForeground, textField(), textFieldValueConsumer);
     }
 
     private static Component componentWith(
             String buttonText,
+            Color buttonBackground,
+            Color buttonForeground,
             JTextField textField,
             Consumer<String> textFieldValueConsumer
     ) {
         return new Column(
                 textField,
-                button(buttonText, textField, textFieldValueConsumer)
+                button(buttonText, buttonBackground, buttonForeground, textField, textFieldValueConsumer)
         );
     }
 
@@ -39,14 +40,16 @@ public class ButtonWithTextField {
 
     private static Component button(
             String buttonText,
+            Color backgroundColor,
+            Color foregroundColor,
             JTextField textField,
             Consumer<String> textFieldValueConsumer
     ) {
         return ClickableButton.create(
                 buttonText,
                 click -> handlePrimaryAction(textFieldValueConsumer, textField),
-                decode("#490049"),
-                WHITE,
+                backgroundColor,
+                foregroundColor,
                 new Font("Arial", PLAIN, 23)
         );
     }

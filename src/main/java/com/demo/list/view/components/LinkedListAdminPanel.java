@@ -1,6 +1,6 @@
 package com.demo.list.view.components;
 
-import com.demo.list.configuration.language.TextProvider;
+import com.demo.list.configuration.language.AppProperties;
 import com.demo.list.view.controllers.LinkedListOperationsController;
 
 import javax.swing.border.EmptyBorder;
@@ -12,7 +12,7 @@ import static java.awt.GridBagConstraints.BOTH;
 public class LinkedListAdminPanel extends BasePanel {
 
     public LinkedListAdminPanel(
-            TextProvider strings,
+            AppProperties props,
             LinkedListOperationsController controller,
             Component listSizeComponent,
             Component sortingStateComponent
@@ -20,17 +20,32 @@ public class LinkedListAdminPanel extends BasePanel {
         configureLayout();
 
         add(
-                ButtonWithTextField.create(strings.get("button.add.element"), controller::onAddElement),
+                ButtonWithTextField.create(
+                        props.string("button.add.element"),
+                        props.color("primary.action"),
+                        props.color("on.primary.action"),
+                        controller::onAddElement
+                ),
                 constraints(0,0,1,2, BOTH,1,1)
         );
 
         add(
-                ButtonWithTextField.create(strings.get("button.remove.element"), controller::onRemoveElement),
+                ButtonWithTextField.create(
+                        props.string("button.remove.element"),
+                        props.color("primary.action"),
+                        props.color("on.primary.action"),
+                        controller::onRemoveElement
+                ),
                 constraints(1,0,1,2, BOTH,1,1)
         );
 
         add(
-                ButtonWithTextField.create(strings.get("button.show.first.appearance"), controller::onShowFirstAppearance),
+                ButtonWithTextField.create(
+                        props.string("button.show.first.appearance"),
+                        props.color("primary.action"),
+                        props.color("on.primary.action"),
+                        controller::onShowFirstAppearance
+                ),
                 constraints(2,0,1,2, BOTH,1,1)
         );
 
@@ -40,20 +55,35 @@ public class LinkedListAdminPanel extends BasePanel {
         );
 
         add(
-                ButtonWithTextField.create(strings.get("button.show.all.greater"), controller::onShowAllGreater),
+                ButtonWithTextField.create(
+                        props.string("button.show.all.greater"),
+                        props.color("primary.action"),
+                        props.color("on.primary.action"),
+                        controller::onShowAllGreater
+                ),
                 constraints(0,2,1,2, BOTH,1,1)
         );
 
         add(
-                ButtonWithTextField.create(strings.get("button.show.all.less"), controller::onShowAllLess),
+                ButtonWithTextField.create(
+                        props.string("button.show.all.less"),
+                        props.color("primary.action"),
+                        props.color("on.primary.action"),
+                        controller::onShowAllLess
+                ),
                 constraints(1,2,1,2, BOTH,1,1)
         );
         add(
-                IntegersOperations.create(strings, controller),
+                IntegersOperations.create(props, controller),
                 constraints(2,2,1,2, BOTH,1,1)
         );
         add(
-                ResetListButtons.create(strings, controller::onNewAscendingList, controller::onNewDescendingList, controller::onNewUnsortedList),
+                ResetListButtons.create(
+                        props,
+                        controller::onNewAscendingList,
+                        controller::onNewDescendingList,
+                        controller::onNewUnsortedList
+                ),
                 constraints(3,3,1,2, BOTH,1,1)
         );
 

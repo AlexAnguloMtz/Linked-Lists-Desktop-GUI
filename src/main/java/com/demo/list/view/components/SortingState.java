@@ -1,6 +1,6 @@
 package com.demo.list.view.components;
 
-import com.demo.list.configuration.language.TextProvider;
+import com.demo.list.configuration.language.AppProperties;
 import com.demo.list.observer.Observer;
 import com.demo.list.view.states.ObservableListState;
 
@@ -8,18 +8,17 @@ import javax.swing.*;
 
 import java.awt.*;
 
-import static java.awt.Color.*;
 import static java.awt.Font.PLAIN;
 import static javax.swing.SwingConstants.CENTER;
 
 public class SortingState extends JPanel implements Observer {
 
     private final ObservableListState observableListState;
-    private final TextProvider textProvider;
+    private final AppProperties props;
 
-    public SortingState(ObservableListState observableListState, TextProvider textProvider) {
+    public SortingState(ObservableListState observableListState, AppProperties textProvider) {
         this.observableListState = observableListState;
-        this.textProvider = textProvider;
+        this.props = textProvider;
         observableListState.addObserver(this);
         initialize();
     }
@@ -100,14 +99,14 @@ public class SortingState extends JPanel implements Observer {
         setBackground(background);
         var label = new JLabel(text);
         label.setFont(new Font("Arial", PLAIN, 30));
-        label.setForeground(WHITE);
+        label.setForeground(foregroundColor());
         label.setHorizontalAlignment(CENTER);
         setLayout(new BorderLayout());
         add(label, BorderLayout.CENTER);
     }
 
     private String getText(String key) {
-        return textProvider.get(key);
+        return props.string(key);
     }
 
     private boolean allTheSame() {
@@ -115,19 +114,23 @@ public class SortingState extends JPanel implements Observer {
     }
 
     private Color neutralColor() {
-        return decode("#36454F");
+        return props.color("neutral");
     }
 
     private Color ascendingColor() {
-        return decode("#228B22");
+        return props.color("ascending");
     }
 
     private Color descendingColor() {
-        return decode("#191970");
+        return props.color("descending");
     }
 
     private Color unsortedColor() {
-        return decode("#E49B0F");
+        return props.color("unsorted");
+    }
+
+    private Color foregroundColor() {
+        return props.color("on.list.sorting.state");
     }
 
 }

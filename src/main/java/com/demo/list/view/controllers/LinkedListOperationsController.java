@@ -1,6 +1,6 @@
 package com.demo.list.view.controllers;
 
-import com.demo.list.configuration.language.TextProvider;
+import com.demo.list.configuration.language.AppProperties;
 import com.demo.list.view.screens.MainScreen;
 import com.demo.list.view.states.ObservableListState;
 
@@ -14,12 +14,12 @@ import static java.lang.String.format;
 public class LinkedListOperationsController {
 
     private final ObservableListState state;
-    private final TextProvider strings;
+    private final AppProperties strings;
     private final MainScreen screen;
 
     public LinkedListOperationsController(
             ObservableListState state,
-            TextProvider strings,
+            AppProperties strings,
             MainScreen screen
     ) {
         this.state = state;
@@ -76,23 +76,23 @@ public class LinkedListOperationsController {
     }
 
     private void handleNonIntegerInput(String input) {
-        showError(format(strings.get("error.not.a.number"), input));
+        showError(format(strings.string("error.not.a.number"), input));
     }
 
     private void handleIndexOutOfBounds(int index) {
-        showError(format(strings.get("error.index.out.of.bounds"), index));
+        showError(format(strings.string("error.index.out.of.bounds"), index));
     }
 
     private void handleNoGreaterElement(int number) {
-        showError(format(strings.get("error.no.greater.elements"), number));
+        showError(format(strings.string("error.no.greater.elements"), number));
     }
 
     private void handleNoSmallerElement(int number) {
-        showError(format(strings.get("error.no.smaller.elements"), number));
+        showError(format(strings.string("error.no.smaller.elements"), number));
     }
 
     private void handleEmptyList() {
-        showError(strings.get("error.empty.list"));
+        showError(strings.string("error.empty.list"));
     }
 
     private boolean isOutOfBounds(int index) {
@@ -104,7 +104,7 @@ public class LinkedListOperationsController {
     }
 
     private void handleNonExistentElement(int number) {
-        showError(format(strings.get("error.element.not.in.list"), number));
+        showError(format(strings.string("error.element.not.in.list"), number));
     }
 
     private void showError(String error) {

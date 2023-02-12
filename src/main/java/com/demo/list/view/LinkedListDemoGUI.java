@@ -1,7 +1,7 @@
 package com.demo.list.view;
 
 import com.demo.list.configuration.language.Language;
-import com.demo.list.configuration.language.TextProvider;
+import com.demo.list.configuration.language.AppProperties;
 import com.demo.list.view.screens.LanguageSelectionScreen;
 import com.demo.list.view.screens.MainScreen;
 import com.demo.list.view.screens.Screen;
@@ -14,7 +14,7 @@ public class LinkedListDemoGUI extends JFrame {
     private final ScreenManager screenManager;
     private final LanguageSelectionScreen languageConfigurationScreen;
 
-    public LinkedListDemoGUI(String windowTitle, TextProvider textProvider) {
+    public LinkedListDemoGUI(String windowTitle, AppProperties textProvider) {
         this.windowConfigurer = new WindowConfigurer();
         this.screenManager = new ScreenManager();
         this.languageConfigurationScreen = createLanguageSelectionScreen(textProvider);
@@ -23,7 +23,7 @@ public class LinkedListDemoGUI extends JFrame {
         configureWindow(windowTitle);
     }
 
-    private LanguageSelectionScreen createLanguageSelectionScreen(TextProvider textProvider) {
+    private LanguageSelectionScreen createLanguageSelectionScreen(AppProperties textProvider) {
         return new LanguageSelectionScreen(
                 clickEvent -> showMainScreen(Language.SPANISH, textProvider),
                 clickEvent -> showMainScreen(Language.ENGLISH, textProvider),
@@ -31,7 +31,7 @@ public class LinkedListDemoGUI extends JFrame {
         );
     }
 
-    private void showMainScreen(Language language, TextProvider textProvider) {
+    private void showMainScreen(Language language, AppProperties textProvider) {
         textProvider.setLanguage(language);
         setActiveScreen(new MainScreen(textProvider));
     }
