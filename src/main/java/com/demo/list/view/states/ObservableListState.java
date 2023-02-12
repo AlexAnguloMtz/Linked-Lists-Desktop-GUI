@@ -49,8 +49,8 @@ public class ObservableListState implements Observable {
         return list;
     }
 
-    public void addElementToList(String input) {
-        executeAndNotifyAllObservers(() -> handleAddElementInput(input));
+    public void addElementToList(int number) {
+        executeAndNotifyAllObservers(() -> list.add(number));
     }
 
     public void removeElementFromListAtIndex(int index) {
@@ -152,15 +152,6 @@ public class ObservableListState implements Observable {
     private void executeAndNotifyAllObservers(Runnable runnable) {
         runnable.run();
         notifyAllObservers();
-    }
-
-    private void handleAddElementInput(String input) {
-        if (isInteger(input))
-            list.add(parseInt(input));
-    }
-
-    private boolean isInteger(String input) {
-        return IntegerUtils.isInteger(input);
     }
 
     private MyLinkedList<Comparable<Integer>> ascendingList() {

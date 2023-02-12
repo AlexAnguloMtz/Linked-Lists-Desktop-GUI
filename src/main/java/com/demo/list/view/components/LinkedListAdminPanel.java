@@ -1,48 +1,36 @@
 package com.demo.list.view.components;
 
 import com.demo.list.configuration.language.TextProvider;
+import com.demo.list.view.controllers.LinkedListOperationsController;
 
 import javax.swing.border.EmptyBorder;
 import java.awt.*;
-import java.awt.event.ActionListener;
-import java.util.function.Consumer;
 
 import static com.demo.list.view.layouts.GridBagConstraintsBuilder.constraints;
 import static java.awt.GridBagConstraints.BOTH;
 
 public class LinkedListAdminPanel extends BasePanel {
+
     public LinkedListAdminPanel(
             TextProvider strings,
-            Consumer<String> addElementValueConsumer,
-            Consumer<String> removeElementValueConsumer,
-            Consumer<String> showFirstAppearanceValueConsumer,
-            Consumer<String> showAllGreaterValueConsumer,
-            Consumer<String> showAllLessValueConsumer,
-            ActionListener onNewAscendingList,
-            ActionListener onNewDescendingList,
-            ActionListener onNewUnsortedList,
-            ActionListener onRemoveEvenNumbers,
-            ActionListener onRemoveOddNumbers,
-            ActionListener onRemovePositiveNumbers,
-            ActionListener onRemoveNegativeNumbers,
+            LinkedListOperationsController controller,
             Component listSizeComponent,
             Component sortingStateComponent
     ) {
-
-        setLayout(new GridBagLayout());
+        configureLayout();
 
         add(
-                ButtonWithTextField.create(strings.get("button.add.element"), addElementValueConsumer),
+                ButtonWithTextField.create(strings.get("button.add.element"), controller::onAddElement),
                 constraints(0,0,1,2, BOTH,1,1)
         );
 
         add(
-                ButtonWithTextField.create(strings.get("button.remove.element"), removeElementValueConsumer),
+                ButtonWithTextField.create(strings.get("button.remove.element"), controller::onRemoveElement),
                 constraints(1,0,1,2, BOTH,1,1)
         );
 
         add(
-                ButtonWithTextField.create(strings.get("button.show.first.appearance"), showFirstAppearanceValueConsumer),
+                ButtonWithTextField.create(strings.get("button.show.first.appearance"), controller::onShowFirstAppearance),
                 constraints(2,0,1,2, BOTH,1,1)
         );
 
@@ -52,31 +40,28 @@ public class LinkedListAdminPanel extends BasePanel {
         );
 
         add(
-                ButtonWithTextField.create(strings.get("button.show.all.greater"), showAllGreaterValueConsumer),
+                ButtonWithTextField.create(strings.get("button.show.all.greater"), controller::onShowAllGreater),
                 constraints(0,2,1,2, BOTH,1,1)
         );
 
         add(
-                ButtonWithTextField.create(strings.get("button.show.all.less"), showAllLessValueConsumer),
+                ButtonWithTextField.create(strings.get("button.show.all.less"), controller::onShowAllLess),
                 constraints(1,2,1,2, BOTH,1,1)
         );
         add(
-                IntegersOperations.create(
-                        strings,
-                        onRemoveEvenNumbers,
-                        onRemoveOddNumbers,
-                        onRemovePositiveNumbers,
-                        onRemoveNegativeNumbers
-                ),
+                IntegersOperations.create(strings, controller),
                 constraints(2,2,1,2, BOTH,1,1)
         );
         add(
-                ResetListButtons.create(strings, onNewAscendingList, onNewDescendingList, onNewUnsortedList),
+                ResetListButtons.create(strings, controller::onNewAscendingList, controller::onNewDescendingList, controller::onNewUnsortedList),
                 constraints(3,3,1,2, BOTH,1,1)
         );
 
-        setPadding();
+    }
 
+    private void configureLayout() {
+        setLayout(new GridBagLayout());
+        setPadding();
     }
 
     private void setPadding() {

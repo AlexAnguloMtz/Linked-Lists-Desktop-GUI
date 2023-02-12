@@ -1,6 +1,7 @@
 package com.demo.list.view.components;
 
 import com.demo.list.configuration.language.TextProvider;
+import com.demo.list.view.controllers.LinkedListOperationsController;
 
 import javax.swing.*;
 import java.awt.*;
@@ -14,28 +15,25 @@ import static java.awt.GridBagConstraints.BOTH;
 public class IntegersOperations {
 
     public static JComponent create(
-            TextProvider textProvider,
-            ActionListener onRemoveEvenNumbers,
-            ActionListener onRemoveOddNumbers,
-            ActionListener onRemovePositiveNumbers,
-            ActionListener onRemoveNegativeNumbers
+            TextProvider strings,
+            LinkedListOperationsController controller
     ) {
         var panel = new JPanel();
         panel.setLayout(new GridBagLayout());
         panel.add(
-                button(textProvider.get("button.remove.even"), onRemoveEvenNumbers),
+                button(strings.get("button.remove.even"), controller::onRemoveEvenNumbers),
                 constraints(0, 0, 1, 1, BOTH, 1, 1)
         );
         panel.add(
-                button(textProvider.get("button.remove.odd"), onRemoveOddNumbers),
+                button(strings.get("button.remove.odd"), controller::onRemoveOddNumbers),
                 constraints(0, 1, 1, 1, BOTH, 1, 1)
         );
         panel.add(
-                button(textProvider.get("button.remove.positive"), onRemovePositiveNumbers),
+                button(strings.get("button.remove.positive"), controller::onRemovePositiveNumbers),
                 constraints(0, 2, 1, 1, BOTH, 1, 1)
         );
         panel.add(
-                button(textProvider.get("button.remove.negative"), onRemoveNegativeNumbers),
+                button(strings.get("button.remove.negative"), controller::onRemoveNegativeNumbers),
                 constraints(0, 3, 1, 1, BOTH, 1, 1)
         );
         return panel;

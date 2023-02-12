@@ -1,30 +1,28 @@
 package com.demo.list.view.screens;
 
 import com.demo.list.configuration.language.TextProvider;
-import com.demo.list.util.IntegerUtils;
 import com.demo.list.view.components.*;
+import com.demo.list.view.controllers.LinkedListOperationsController;
 import com.demo.list.view.states.ObservableListState;
 
 import java.awt.*;
-import java.awt.event.ActionEvent;
 
 import static com.demo.list.view.layouts.GridBagConstraintsBuilder.constraints;
 import static java.awt.GridBagConstraints.BOTH;
-import static java.lang.Integer.parseInt;
 import static java.lang.String.format;
 
 public class MainScreen extends Screen {
 
-    private final TextProvider textProvider;
+    private final TextProvider strings;
     private final ObservableListState state;
-    private final MessageModal messageModal;
     private final ScrollableLinkedListWindow scrollableLinkedListWindowComponent;
+    private final MessageModal messageModal;
 
     public MainScreen(TextProvider textProvider) {
-        this.textProvider = textProvider;
+        this.strings = textProvider;
         this.state = new ObservableListState();
-        this.messageModal = new MessageModal();
         this.scrollableLinkedListWindowComponent = new ScrollableLinkedListWindow();
+        this.messageModal = new MessageModal();
         addChildrenComponents();
     }
 
@@ -33,200 +31,65 @@ public class MainScreen extends Screen {
         return "MAIN_SCREEN";
     }
 
-    private Component linkedListsOperationComponent() {
-        return new LinkedListAdminPanel(
-                textProvider,
-                this::handleAddElementValue,
-                this::handleRemoveElementValue,
-                this::handleShowFirstAppearance,
-                this::handleShowAllGreater,
-                this::handleShowAllLess,
-                this::handleNewAscendingList,
-                this::handleNewDescendingList,
-                this::handleNewUnsortedList,
-                this::handleRemoveEvenNumbers,
-                this::handleRemoveOddNumbers,
-                this::handleRemovePositiveNumbers,
-                this::handleRemoveNegativeNumbers,
-                new ListSize(state),
-                new SortingState(state, textProvider)
-        );
-    }
-
-    private void handleAddElementValue(String input) {
-        if (!isInteger(input)) {
-            handleNonIntegerInput(input);
-            return;
-        }
-        state.addElementToList(input);
-    }
-
-    private void handleRemoveElementValue(String input) {
-        if (!isInteger(input)) {
-            handleNonIntegerInput(input);
-            return;
-        }
-        if (isOutOfBounds(parseInt(input)))  {
-            handleIndexOutOfBounds(parseInt(input));
-            return;
-        }
-        state.removeElementFromListAtIndex(parseInt(input));
-    }
-
-    private boolean isOutOfBounds(int index) {
-        return listLastIndex() < index || index < 0;
-    }
-
-    private void handleIndexOutOfBounds(int index) {
-        showError(format(textProvider.get("error.index.out.of.bounds"), index));
-    }
-
-    private void handleShowFirstAppearance(String input) {
-        if (!isInteger(input)) {
-            handleNonIntegerInput(input);
-            return;
-        }
-        if (!state.listContains(parseInt(input))) {
-            handleNonExistentElement(parseInt(input));
-            return;
-        }
-        showMessage(firstAppearanceMessage(input));
-    }
-
-    private void handleShowAllGreater(String input) {
-        if (!isInteger(input)) {
-            handleNonIntegerInput(input);
-            return;
-        }
-        if (state.isListEmpty()) {
-            handleEmptyList();
-            return;
-        }
-        if (state.max() <= parseInt(input)) {
-            handleNoGreaterElement(parseInt(input));
-            return;
-        }
-        showAllGreaterThan(parseInt(input));
-    }
-
-    private void handleShowAllLess(String input) {
-        if (!isInteger(input)) {
-            handleNonIntegerInput(input);
-            return;
-        }
-        if (state.isListEmpty()) {
-            handleEmptyList();
-            return;
-        }
-        if (state.min() >= parseInt(input)) {
-            handleNoSmallerElement(parseInt(input));
-            return;
-        }
-        showAllLessThan(parseInt(input));
-    }
-
-    private void handleRemoveEvenNumbers(ActionEvent actionEvent) {
-        state.removeAllThatMatch(number -> (number % 2) == 0);
-    }
-
-    private void handleRemoveOddNumbers(ActionEvent actionEvent) {
-        state.removeAllThatMatch(number -> (number % 2) != 0);
-    }
-
-    private void handleRemovePositiveNumbers(ActionEvent actionEvent) {
-        state.removeAllThatMatch(number -> number > 0);
-    }
-
-    private void handleRemoveNegativeNumbers(ActionEvent actionEvent) {
-        state.removeAllThatMatch(number -> number < 0);
-    }
-
-    private void handleNoGreaterElement(int number) {
-        showError(format(textProvider.get("error.no.greater.elements"), number));
-    }
-
-    private void handleNoSmallerElement(int number) {
-        showError(format(textProvider.get("error.no.smaller.elements"), number));
-    }
-
-    private void handleEmptyList() {
-        showError(textProvider.get("error.empty.list"));
-    }
-
-    private void showAllGreaterThan(int number) {
+    public void showAllLessThan(int number) {
         scrollableLinkedListWindowComponent.show(
-            textProvider.get("text.window.all.greater.title"),
-            format(textProvider.get("text.window.all.greater.header"), number),
-            textProvider.get("text.empty.list.content"),
-            this,
-            state.withAllGreaterThan(number)
-        );
-    }
-
-    private void showAllLessThan(int number) {
-        scrollableLinkedListWindowComponent.show(
-                textProvider.get("text.window.all.less.title"),
-                format(textProvider.get("text.window.all.less.header"), number),
-                textProvider.get("text.empty.list.content"),
+                strings.get("text.window.all.less.title"),
+                format(strings.get("text.window.all.less.header"), number),
+                strings.get("text.empty.list.content"),
                 this,
                 state.withAllLessThan(number)
         );
     }
 
-    private String firstAppearanceMessage(String input) {
-        return format(
-            textProvider.get("message.first.appearance"),
-            input,
-            state.firstAppearance(parseInt(input))
+    public void showAllGreaterThan(int number) {
+        scrollableLinkedListWindowComponent.show(
+                strings.get("text.window.all.greater.title"),
+                format(strings.get("text.window.all.greater.header"), number),
+                strings.get("text.empty.list.content"),
+                this,
+                state.withAllGreaterThan(number)
         );
     }
 
-    private int listLastIndex() {
-        return state.getList().size() - 1;
+    public void showMessage(String message) {
+        messageModal.showMessage(message);
     }
 
-    private boolean isInteger(String input) {
-        return IntegerUtils.isInteger(input);
+    public void showError(String error) {
+        messageModal.showError(error);
+    }
+
+    public void showFirstAppearance(int number) {
+        showMessage(firstAppearanceMessage(number));
+    }
+
+    private String firstAppearanceMessage(int number) {
+        return format(
+                strings.get("message.first.appearance"),
+                number,
+                state.firstAppearance(number)
+        );
+    }
+
+    private Component linkedListsOperationComponent() {
+        return new LinkedListAdminPanel(
+                strings,
+                new LinkedListOperationsController(state, strings, this),
+                new ListSize(state),
+                new SortingState(state, strings)
+        );
     }
 
     private void addChildrenComponents() {
         setLayout(new GridBagLayout());
         add(
-                new LinkedListContainer(textProvider, state),
+                new LinkedListContainer(strings, state),
                 constraints(0, 0, 1, 1, BOTH, 1, 0.5)
         );
         add(
-            linkedListsOperationComponent(),
-            constraints(0, 1, 1, 1, BOTH, 1, 0.5)
+                linkedListsOperationComponent(),
+                constraints(0, 1, 1, 1, BOTH, 1, 0.5)
         );
-    }
-
-    private void handleNonIntegerInput(String input) {
-        showError(format(textProvider.get("error.not.a.number"), input));
-    }
-
-    private void handleNonExistentElement(int number) {
-        showError(format(textProvider.get("error.element.not.in.list"), number));
-    }
-
-    private void handleNewUnsortedList(ActionEvent actionEvent) {
-        state.resetWithNewUnsortedList();
-    }
-
-    private void handleNewDescendingList(ActionEvent actionEvent) {
-        state.resetWithNewDescendingList();
-    }
-
-    private void handleNewAscendingList(ActionEvent actionEvent) {
-        state.resetWithNewAscendingList();
-    }
-
-    private void showMessage(String message) {
-        messageModal.showMessage(message);
-    }
-
-    private void showError(String message) {
-        messageModal.showError(message);
     }
 
 }
