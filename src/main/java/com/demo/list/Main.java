@@ -20,11 +20,11 @@ public class Main {
     private static Component gui() {
         return new LinkedListDemoGUI(
                 "Linked Lists Demonstration",
-                textProvider()
+                appProperties()
         );
     }
 
-    private static AppProperties textProvider() {
+    private static AppProperties appProperties() {
         var propertiesLoader = new PropertiesLoader();
         return new AppProperties(
                 propertiesLoader.loadProperties("text/english.properties"),

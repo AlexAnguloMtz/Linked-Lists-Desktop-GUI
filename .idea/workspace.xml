@@ -5,12 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="5acbd817-fa40-45e3-9976-6c6ca2d29a0b" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/demo/list/util/Decision.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/demo/list/view/components/LinkedList.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/demo/list/view/components/LinkedList.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/demo/list/view/components/Node.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/demo/list/view/components/Node.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/demo/list/view/controllers/LinkedListOperationsController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/demo/list/view/controllers/LinkedListOperationsController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/demo/list/view/states/ObservableListState.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/demo/list/view/states/ObservableListState.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/demo/list/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/demo/list/Main.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
