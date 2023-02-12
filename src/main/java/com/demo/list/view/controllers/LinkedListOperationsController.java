@@ -44,23 +44,23 @@ public class LinkedListOperationsController {
     }
 
     public void onAddElement(String input) {
-        consumeIntegerOrShowInputError(input, state::addElementToList);
+        handleIntegerInputAction(input, state::addElementToList);
     }
 
     public void onRemoveElement(String input) {
-        consumeIntegerOrShowInputError(input, this::removeElement);
+        handleIntegerInputAction(input, this::removeElement);
     }
 
     public void onShowFirstAppearance(String input) {
-        consumeIntegerOrShowInputError(input, this::showFirstAppearance);
+        handleIntegerInputAction(input, this::showFirstAppearance);
     }
 
     public void onShowAllGreater(String input) {
-        consumeIntegerOrShowInputError(input, this::showAllGreater);
+        handleIntegerInputAction(input, this::showAllGreater);
     }
 
     public void onShowAllLess(String input) {
-        consumeIntegerOrShowInputError(input, this::showAllLess);
+        handleIntegerInputAction(input, this::showAllLess);
     }
 
     public void onNewUnsortedList(ActionEvent actionEvent) {
@@ -111,7 +111,7 @@ public class LinkedListOperationsController {
         screen.showError(error);
     }
 
-    private void consumeIntegerOrShowInputError(String input, Consumer<Integer> consumer) {
+    private void handleIntegerInputAction(String input, Consumer<Integer> consumer) {
         if (!isInteger(input)) {
             handleNonIntegerInput(input);
             return;
@@ -136,27 +136,31 @@ public class LinkedListOperationsController {
     }
 
     private void showAllGreater(int number) {
-        if (state.isListEmpty()) {
-            handleEmptyList();
-            return;
-        }
-        if (state.max() <= number) {
-            handleNoGreaterElement(number);
-            return;
-        }
-        screen.showAllGreaterThan(number);
+        handleListSizeDependentAction(() -> {
+            if (state.max() <= number) {
+                handleNoGreaterElement(number);
+                return;
+            }
+            screen.showAllGreaterThan(number);
+        });
     }
 
     private void showAllLess(int number) {
+        handleListSizeDependentAction(() -> {
+            if (state.min() >= number) {
+                handleNoSmallerElement(number);
+                return;
+            }
+            screen.showAllLessThan(number);
+        });
+    }
+
+    private void handleListSizeDependentAction(Runnable runnable) {
         if (state.isListEmpty()) {
             handleEmptyList();
             return;
         }
-        if (state.min() >= number) {
-            handleNoSmallerElement(number);
-            return;
-        }
-        screen.showAllLessThan(number);
+        runnable.run();
     }
 
 }
