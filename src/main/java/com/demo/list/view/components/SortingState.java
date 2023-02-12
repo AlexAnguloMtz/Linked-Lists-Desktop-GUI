@@ -107,7 +107,7 @@ public class SortingState extends JPanel implements Observer {
     }
 
     private String getText(String key) {
-        return textProvider.text(key);
+        return textProvider.get(key);
     }
 
     private boolean allTheSame() {

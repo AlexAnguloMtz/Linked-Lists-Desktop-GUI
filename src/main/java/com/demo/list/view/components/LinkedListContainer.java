@@ -9,12 +9,12 @@ import java.awt.*;
 import static com.demo.list.view.layouts.GridBagConstraintsBuilder.constraints;
 import static java.awt.GridBagConstraints.BOTH;
 
-public class LinkedListPanel extends BasePanel implements Observer {
+public class LinkedListContainer extends BasePanel implements Observer {
 
     private final ObservableListState observableListState;
     private final TextProvider textProvider;
 
-    public LinkedListPanel(
+    public LinkedListContainer(
             TextProvider textProvider,
             ObservableListState observableListState
     ) {
@@ -42,7 +42,7 @@ public class LinkedListPanel extends BasePanel implements Observer {
     }
 
     private String getText(String key) {
-        return textProvider.text(key);
+        return textProvider.get(key);
     }
 
 }

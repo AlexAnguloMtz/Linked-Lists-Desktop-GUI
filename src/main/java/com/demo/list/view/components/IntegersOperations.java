@@ -23,19 +23,19 @@ public class IntegersOperations {
         var panel = new JPanel();
         panel.setLayout(new GridBagLayout());
         panel.add(
-                button(textProvider.text("button.remove.even"), onRemoveEvenNumbers),
+                button(textProvider.get("button.remove.even"), onRemoveEvenNumbers),
                 constraints(0, 0, 1, 1, BOTH, 1, 1)
         );
         panel.add(
-                button(textProvider.text("button.remove.odd"), onRemoveOddNumbers),
+                button(textProvider.get("button.remove.odd"), onRemoveOddNumbers),
                 constraints(0, 1, 1, 1, BOTH, 1, 1)
         );
         panel.add(
-                button(textProvider.text("button.remove.positive"), onRemovePositiveNumbers),
+                button(textProvider.get("button.remove.positive"), onRemovePositiveNumbers),
                 constraints(0, 2, 1, 1, BOTH, 1, 1)
         );
         panel.add(
-                button(textProvider.text("button.remove.negative"), onRemoveNegativeNumbers),
+                button(textProvider.get("button.remove.negative"), onRemoveNegativeNumbers),
                 constraints(0, 3, 1, 1, BOTH, 1, 1)
         );
         return panel;

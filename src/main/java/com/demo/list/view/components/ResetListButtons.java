@@ -34,17 +34,17 @@ public class ResetListButtons {
     ) {
         panel.setLayout(new GridBagLayout());
         panel.add(
-                button(textProvider.text("button.new.ascending.list"), onNewAscendingList),
+                button(textProvider.get("button.new.ascending.list"), onNewAscendingList),
                 constraints(0,0,1,1, BOTH,1,1)
         );
 
         panel.add(
-                button(textProvider.text("button.new.descending.list"), onNewDescendingList),
+                button(textProvider.get("button.new.descending.list"), onNewDescendingList),
                 constraints(0,1,1,1, BOTH,1,1)
         );
 
         panel.add(
-                button(textProvider.text("button.new.unsorted.list"), onNewUnsortedList),
+                button(textProvider.get("button.new.unsorted.list"), onNewUnsortedList),
                 constraints(0,2,1,1, BOTH,1,1)
         );
     }

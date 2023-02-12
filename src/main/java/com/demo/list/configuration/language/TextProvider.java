@@ -27,7 +27,7 @@ public class TextProvider {
         };
     }
 
-    public String text(String key) {
+    public String get(String key) {
         return (String) activeLanguageProperties.get(key);
     }
 

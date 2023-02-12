@@ -32,17 +32,17 @@ public class LinkedListAdminPanel extends BasePanel {
         setLayout(new GridBagLayout());
 
         add(
-                ButtonWithTextField.create(strings.text("button.add.element"), addElementValueConsumer),
+                ButtonWithTextField.create(strings.get("button.add.element"), addElementValueConsumer),
                 constraints(0,0,1,2, BOTH,1,1)
         );
 
         add(
-                RemoveElementFromList.create(strings, removeElementValueConsumer),
+                ButtonWithTextField.create(strings.get("button.remove.element"), removeElementValueConsumer),
                 constraints(1,0,1,2, BOTH,1,1)
         );
 
         add(
-                ShowFirstAppearanceComponent.create(strings, showFirstAppearanceValueConsumer),
+                ButtonWithTextField.create(strings.get("button.show.first.appearance"), showFirstAppearanceValueConsumer),
                 constraints(2,0,1,2, BOTH,1,1)
         );
 
@@ -52,12 +52,12 @@ public class LinkedListAdminPanel extends BasePanel {
         );
 
         add(
-                ShowAllGreaterElements.create(strings, showAllGreaterValueConsumer),
+                ButtonWithTextField.create(strings.get("button.show.all.greater"), showAllGreaterValueConsumer),
                 constraints(0,2,1,2, BOTH,1,1)
         );
 
         add(
-                ShowAllLessElementsComponent.create(strings, showAllLessValueConsumer),
+                ButtonWithTextField.create(strings.get("button.show.all.less"), showAllLessValueConsumer),
                 constraints(1,2,1,2, BOTH,1,1)
         );
         add(
