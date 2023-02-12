@@ -16,7 +16,14 @@ public class GenericOperationComponent {
             String buttonText,
             Consumer<String> textFieldValueConsumer
     ) {
-        var textField = textField();
+        return componentWith(buttonText, textField(), textFieldValueConsumer);
+    }
+
+    private static Component componentWith(
+            String buttonText,
+            JTextField textField,
+            Consumer<String> textFieldValueConsumer
+    ) {
         return new Column(
                 textField,
                 button(buttonText, textField, textFieldValueConsumer)
