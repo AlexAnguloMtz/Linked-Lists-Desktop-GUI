@@ -137,19 +137,27 @@ public class LinkedListOperationsController {
     }
 
     private void showAllGreaterThan(int number) {
-        decide(
+        runOrShowError(
                 state.max() > number,
                 () -> screen.showAllGreaterThan(number),
-                () -> showFormattedError("error.no.greater.elements", number)
-        );
+                formattedError("error.no.greater.elements", number)
+        ).run();
     }
 
     private void showAllLessThan(int number) {
-        decide(
+        runOrShowError(
                 state.min() < number,
                 () -> screen.showAllLessThan(number),
-                () -> showFormattedError("error.no.smaller.elements", number)
-        );
+                formattedError("error.no.smaller.elements", number)
+        ).run();
+    }
+
+    private String formattedError(String key, Object...objects) {
+        return format(string(key), objects);
+    }
+
+    private Runnable runOrShowError(boolean condition, Runnable runnable, String error) {
+        return (condition) ? (runnable) : (() -> showError(error));
     }
 
     private void showFormattedError(String key, Object...objects) {

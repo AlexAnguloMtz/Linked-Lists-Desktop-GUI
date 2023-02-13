@@ -27,10 +27,10 @@ public class Main {
     private static AppProperties appProperties() {
         var propertiesLoader = new PropertiesLoader();
         return new AppProperties(
-                propertiesLoader.loadProperties("text/english.properties"),
-                propertiesLoader.loadProperties("text/spanish.properties"),
-                propertiesLoader.loadProperties("text/french.properties"),
-                propertiesLoader.loadProperties("colors/colors.properties")
+                propertiesLoader.load("text/english.properties"),
+                propertiesLoader.load("text/spanish.properties"),
+                propertiesLoader.load("text/french.properties"),
+                propertiesLoader.load("colors/colors.properties")
         );
     }
 

@@ -7,6 +7,7 @@ import java.awt.*;
 import java.awt.event.ActionListener;
 
 import static java.awt.Font.PLAIN;
+import static java.awt.Label.CENTER;
 import static javax.swing.Box.createRigidArea;
 import static javax.swing.BoxLayout.X_AXIS;
 import static javax.swing.BoxLayout.Y_AXIS;
@@ -25,12 +26,12 @@ public class LanguageSelection extends BasePanel {
         add(buttonsPanel(onSpanish, onEnglish, onFrench));
     }
 
-    private Label label() {
-        var label = new Label("Select your language");
-        label.setAlignment(Label.CENTER);
-        label.setFont(new Font("Arial", PLAIN, 38));
-        label.setMaximumSize(new Dimension(500, 300));
-        return label;
+    private Component label() {
+        return LabelBuilder.withText("Select your language")
+                          .font("Arial", PLAIN, 38)
+                          .alignment(CENTER)
+                          .maxSize(500, 300)
+                          .build();
     }
 
     private BasePanel buttonsPanel(

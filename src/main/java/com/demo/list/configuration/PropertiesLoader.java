@@ -1,6 +1,5 @@
 package com.demo.list.configuration;
 
-import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.Properties;
@@ -9,7 +8,7 @@ import static java.lang.String.format;
 
 public class PropertiesLoader {
 
-    public Properties loadProperties(String fileName) {
+    public Properties load(String fileName) {
         try (InputStream propertiesFile = getClass().getClassLoader().getResourceAsStream(fileName)) {
             Properties properties = new Properties();
             properties.load(propertiesFile);

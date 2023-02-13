@@ -24,8 +24,8 @@ class LanguageButton {
     private static Component label(Language language) {
         var label = new JLabel(language.getLanguageName());
         label.setFont(new Font("Arial", PLAIN, 20));
-        label.setOpaque(false);
         label.setBorder(createEmptyBorder(0, 50, 0, 0));
+        label.setOpaque(false);
         return label;
     }
 
