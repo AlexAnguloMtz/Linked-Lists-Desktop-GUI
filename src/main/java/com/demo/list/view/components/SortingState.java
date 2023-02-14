@@ -21,6 +21,12 @@ public class SortingState extends BaseComponent implements Observer {
         ALL_EQUAL, ASCENDING, DESCENDING, UNSORTED, EMPTY
     }
 
+    private record StatePredicate(Predicate<ObservableListState> test, State state) {
+        public boolean apply(ObservableListState state) {
+            return test.test(state);
+        }
+    }
+
     private final ObservableListState observableListState;
 
     private final Map<State, Pair<String, Color>> renderConfigurations;
@@ -124,11 +130,5 @@ public class SortingState extends BaseComponent implements Observer {
         return color("on.list.sorting.state");
     }
 
-
-    private record StatePredicate(Predicate<ObservableListState> test, State state) {
-        public boolean apply(ObservableListState state) {
-            return test.test(state);
-        }
-    }
 
 }
