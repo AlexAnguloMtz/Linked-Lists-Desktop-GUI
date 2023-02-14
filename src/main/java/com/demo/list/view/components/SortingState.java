@@ -121,7 +121,6 @@ public class SortingState extends BaseComponent implements Observer {
         );
     }
 
-    @SuppressWarnings("unchecked")
     private Pair<String, Color> config(String stringKey, String colorKey) {
         return Pair.of(string(stringKey), color(colorKey));
     }
