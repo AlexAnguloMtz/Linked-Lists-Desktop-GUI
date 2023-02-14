@@ -5,13 +5,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="5acbd817-fa40-45e3-9976-6c6ca2d29a0b" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/demo/list/view/components/LabelBuilder.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/demo/list/util/Pair.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/demo/list/view/components/BaseComponent.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/demo/list/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/demo/list/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/demo/list/configuration/PropertiesLoader.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/demo/list/configuration/PropertiesLoader.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/demo/list/view/components/LanguageButton.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/demo/list/view/components/LanguageButton.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/demo/list/view/components/LanguageSelection.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/demo/list/view/components/LanguageSelection.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/demo/list/view/controllers/LinkedListOperationsController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/demo/list/view/controllers/LinkedListOperationsController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/demo/list/view/components/LinkedListAdminPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/demo/list/view/components/LinkedListAdminPanel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/demo/list/view/components/LinkedListContainer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/demo/list/view/components/LinkedListContainer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/demo/list/view/components/ScrollableLinkedList.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/demo/list/view/components/ScrollableLinkedList.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/demo/list/view/components/SortingState.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/demo/list/view/components/SortingState.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/demo/list/view/screens/MainScreen.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/demo/list/view/screens/MainScreen.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

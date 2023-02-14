@@ -5,7 +5,6 @@ import com.demo.list.view.states.ObservableListState;
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 
-
 public class ScrollableLinkedList extends JScrollPane {
 
     public ScrollableLinkedList(

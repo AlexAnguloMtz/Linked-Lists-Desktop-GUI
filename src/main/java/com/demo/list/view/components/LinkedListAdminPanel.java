@@ -9,7 +9,7 @@ import java.awt.*;
 import static com.demo.list.view.layouts.GridBagConstraintsBuilder.constraints;
 import static java.awt.GridBagConstraints.BOTH;
 
-public class LinkedListAdminPanel extends BasePanel {
+public class LinkedListAdminPanel extends BaseComponent {
 
     public LinkedListAdminPanel(
             AppProperties props,
@@ -17,13 +17,30 @@ public class LinkedListAdminPanel extends BasePanel {
             Component listSizeComponent,
             Component sortingStateComponent
     ) {
+        super(props);
         configureLayout();
+        addChildrenComponents(controller, listSizeComponent, sortingStateComponent);
+    }
 
+    private void configureLayout() {
+        setLayout(new GridBagLayout());
+        setPadding();
+    }
+
+    private void setPadding() {
+        setBorder(new EmptyBorder(10, 20, 20, 20));
+    }
+
+    private void addChildrenComponents(
+            LinkedListOperationsController controller,
+            Component listSizeComponent,
+            Component sortingStateComponent
+    ) {
         add(
                 ButtonWithTextField.create(
-                        props.string("button.add.element"),
-                        props.color("primary.action"),
-                        props.color("on.primary.action"),
+                        string("button.add.element"),
+                        color("primary.action"),
+                        color("on.primary.action"),
                         controller::onAddElement
                 ),
                 constraints(0,0,1,2, BOTH,1,1)
@@ -31,9 +48,9 @@ public class LinkedListAdminPanel extends BasePanel {
 
         add(
                 ButtonWithTextField.create(
-                        props.string("button.remove.element"),
-                        props.color("primary.action"),
-                        props.color("on.primary.action"),
+                        string("button.remove.element"),
+                        color("primary.action"),
+                        color("on.primary.action"),
                         controller::onRemoveElement
                 ),
                 constraints(1,0,1,2, BOTH,1,1)
@@ -41,9 +58,9 @@ public class LinkedListAdminPanel extends BasePanel {
 
         add(
                 ButtonWithTextField.create(
-                        props.string("button.show.first.appearance"),
-                        props.color("primary.action"),
-                        props.color("on.primary.action"),
+                        string("button.show.first.appearance"),
+                        color("primary.action"),
+                        color("on.primary.action"),
                         controller::onShowFirstAppearance
                 ),
                 constraints(2,0,1,2, BOTH,1,1)
@@ -56,9 +73,9 @@ public class LinkedListAdminPanel extends BasePanel {
 
         add(
                 ButtonWithTextField.create(
-                        props.string("button.show.all.greater"),
-                        props.color("primary.action"),
-                        props.color("on.primary.action"),
+                        string("button.show.all.greater"),
+                        color("primary.action"),
+                        color("on.primary.action"),
                         controller::onShowAllGreater
                 ),
                 constraints(0,2,1,2, BOTH,1,1)
@@ -66,36 +83,26 @@ public class LinkedListAdminPanel extends BasePanel {
 
         add(
                 ButtonWithTextField.create(
-                        props.string("button.show.all.less"),
-                        props.color("primary.action"),
-                        props.color("on.primary.action"),
+                        string("button.show.all.less"),
+                        color("primary.action"),
+                        color("on.primary.action"),
                         controller::onShowAllLess
                 ),
                 constraints(1,2,1,2, BOTH,1,1)
         );
         add(
-                IntegersOperations.create(props, controller),
+                IntegersOperations.create(getProps(), controller),
                 constraints(2,2,1,2, BOTH,1,1)
         );
         add(
                 ResetListButtons.create(
-                        props,
+                        getProps(),
                         controller::onNewAscendingList,
                         controller::onNewDescendingList,
                         controller::onNewUnsortedList
                 ),
                 constraints(3,3,1,2, BOTH,1,1)
         );
-
-    }
-
-    private void configureLayout() {
-        setLayout(new GridBagLayout());
-        setPadding();
-    }
-
-    private void setPadding() {
-        setBorder(new EmptyBorder(10, 20, 20, 20));
     }
 
 }

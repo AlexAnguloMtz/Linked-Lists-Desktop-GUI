@@ -13,13 +13,13 @@ import static java.lang.String.format;
 
 public class MainScreen extends Screen {
 
-    private final AppProperties strings;
+    private final AppProperties props;
     private final ObservableListState state;
     private final ScrollableLinkedListWindow scrollableLinkedListWindowComponent;
     private final MessageModal messageModal;
 
-    public MainScreen(AppProperties textProvider) {
-        this.strings = textProvider;
+    public MainScreen(AppProperties props) {
+        this.props = props;
         this.state = new ObservableListState();
         this.scrollableLinkedListWindowComponent = new ScrollableLinkedListWindow();
         this.messageModal = new MessageModal();
@@ -33,9 +33,9 @@ public class MainScreen extends Screen {
 
     public void showAllLessThan(int number) {
         scrollableLinkedListWindowComponent.show(
-                strings.string("text.window.all.less.title"),
-                format(strings.string("text.window.all.less.header"), number),
-                strings.string("text.empty.list.content"),
+                string("text.window.all.less.title"),
+                format(string("text.window.all.less.header"), number),
+                string("text.empty.list.content"),
                 this,
                 state.withAllLessThan(number)
         );
@@ -43,9 +43,9 @@ public class MainScreen extends Screen {
 
     public void showAllGreaterThan(int number) {
         scrollableLinkedListWindowComponent.show(
-                strings.string("text.window.all.greater.title"),
-                format(strings.string("text.window.all.greater.header"), number),
-                strings.string("text.empty.list.content"),
+                string("text.window.all.greater.title"),
+                format(string("text.window.all.greater.header"), number),
+                string("text.empty.list.content"),
                 this,
                 state.withAllGreaterThan(number)
         );
@@ -65,7 +65,7 @@ public class MainScreen extends Screen {
 
     private String firstAppearanceMessage(int number) {
         return format(
-                strings.string("message.first.appearance"),
+                props.string("message.first.appearance"),
                 number,
                 state.firstAppearance(number)
         );
@@ -73,23 +73,27 @@ public class MainScreen extends Screen {
 
     private Component linkedListsOperationComponent() {
         return new LinkedListAdminPanel(
-                strings,
-                new LinkedListOperationsController(state, strings, this),
+                props,
+                new LinkedListOperationsController(state, props, this),
                 new ListSize(state),
-                new SortingState(state, strings)
+                new SortingState(state, props)
         );
     }
 
     private void addChildrenComponents() {
         setLayout(new GridBagLayout());
         add(
-                new LinkedListContainer(strings, state),
+                new LinkedListContainer(props, state),
                 constraints(0, 0, 1, 1, BOTH, 1, 0.5)
         );
         add(
                 linkedListsOperationComponent(),
                 constraints(0, 1, 1, 1, BOTH, 1, 0.5)
         );
+    }
+
+    private String string(String key) {
+        return props.string(key);
     }
 
 }

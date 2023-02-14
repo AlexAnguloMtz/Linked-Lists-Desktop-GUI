@@ -2,54 +2,62 @@ package com.demo.list.view.components;
 
 import com.demo.list.configuration.language.AppProperties;
 import com.demo.list.observer.Observer;
+import com.demo.list.util.Pair;
 import com.demo.list.view.states.ObservableListState;
 
 import javax.swing.*;
 
 import java.awt.*;
+import java.util.Map;
 
 import static java.awt.Font.PLAIN;
 import static javax.swing.SwingConstants.CENTER;
 
-public class SortingState extends JPanel implements Observer {
+public class SortingState extends BaseComponent implements Observer {
+
+    private enum State {
+        ALL_EQUAL, ASCENDING, DESCENDING, UNSORTED, EMPTY
+    }
 
     private final ObservableListState observableListState;
-    private final AppProperties props;
 
-    public SortingState(ObservableListState observableListState, AppProperties textProvider) {
+    private final Map<State, Pair<String, Color>> renderConfigurations;
+
+    public SortingState(ObservableListState observableListState, AppProperties props) {
+        super(props);
         this.observableListState = observableListState;
-        this.props = textProvider;
+        this.renderConfigurations = initializeRenderConfigurations();
         observableListState.addObserver(this);
-        initialize();
+        render();
     }
 
     @Override
     public void update() {
         removeAll();
-        initialize();
+        render();
         validate();
         repaint();
     }
 
-    private void initialize() {
-        if (isListEmpty())
-            handleEmptyListState();
+    private void render() {
+        setLayout(new BorderLayout());
+        configureLayoutForState(evaluateState());
+    }
 
-        else if (allTheSame())
-            handleAllTheSame();
-
-        else if (isSortedAscending())
-            handleAscendingSortedListState();
-
-        else if (isSortedDescending())
-            handleDescendingSortedListState();
-
-        else
-            handleUnsortedListState();
+    private State evaluateState() {
+        if (isListEmpty()) return State.EMPTY;
+        if (allEqual()) return State.ALL_EQUAL;
+        if (isSortedAscending()) return State.ASCENDING;
+        if (isSortedDescending()) return State.DESCENDING;
+        return State.UNSORTED;
     }
 
     private boolean isListEmpty() {
         return observableListState.isListEmpty();
+    }
+
+    private boolean allEqual() {
+        return observableListState.allTheSame();
     }
 
     private boolean isSortedAscending() {
@@ -60,77 +68,48 @@ public class SortingState extends JPanel implements Observer {
         return observableListState.isSorted((x, y) -> (((Integer) x) - ((Integer) y)) >= 0);
     }
 
-    private void handleEmptyListState() {
-        configureLayout(
-            getText("text.description.list.empty"),
-            neutralColor()
-        );
+    private void configureLayoutForState(State state) {
+        setBackground(backgroundFor(state));
+        add(labelFor(state), BorderLayout.CENTER);
     }
 
-    private void handleAllTheSame() {
-        configureLayout(
-            getText("text.description.list.neutral"),
-            neutralColor()
-        );
+    private Color backgroundFor(State state) {
+        return config(state).right();
     }
 
-    private void handleAscendingSortedListState() {
-        configureLayout(
-            getText("text.description.list.ascending"),
-            ascendingColor()
-        );
-    }
-
-    private void handleDescendingSortedListState() {
-        configureLayout(
-            getText("text.description.list.descending"),
-            descendingColor()
-        );
-    }
-
-    private void handleUnsortedListState() {
-        configureLayout(
-                getText("text.description.list.unsorted"),
-                unsortedColor()
-        );
-    }
-
-    private void configureLayout(String text, Color background) {
-        setBackground(background);
-        var label = new JLabel(text);
+    private JLabel labelFor(State state) {
+        var label = new JLabel(textFor(state));
         label.setFont(new Font("Arial", PLAIN, 30));
         label.setForeground(foregroundColor());
         label.setHorizontalAlignment(CENTER);
-        setLayout(new BorderLayout());
-        add(label, BorderLayout.CENTER);
+        return label;
     }
 
-    private String getText(String key) {
-        return props.string(key);
+    private String textFor(State state) {
+        return config(state).left();
     }
 
-    private boolean allTheSame() {
-        return observableListState.allTheSame();
+    private Pair<String, Color> config(State state) {
+        return renderConfigurations.get(state);
     }
 
-    private Color neutralColor() {
-        return props.color("neutral");
+    private Map<State, Pair<String, Color>> initializeRenderConfigurations() {
+        return Map.of(
+                State.EMPTY, config("text.description.list.empty", "neutral"),
+                State.ALL_EQUAL, config("text.description.list.neutral", "neutral"),
+                State.ASCENDING, config("text.description.list.ascending", "ascending"),
+                State.DESCENDING, config("text.description.list.descending", "descending"),
+                State.UNSORTED, config("text.description.list.unsorted", "unsorted")
+        );
     }
 
-    private Color ascendingColor() {
-        return props.color("ascending");
-    }
-
-    private Color descendingColor() {
-        return props.color("descending");
-    }
-
-    private Color unsortedColor() {
-        return props.color("unsorted");
+    @SuppressWarnings("unchecked")
+    private Pair<String, Color> config(String stringKey, String colorKey) {
+        return Pair.of(string(stringKey), color(colorKey));
     }
 
     private Color foregroundColor() {
-        return props.color("on.list.sorting.state");
+        return color("on.list.sorting.state");
     }
 
 }

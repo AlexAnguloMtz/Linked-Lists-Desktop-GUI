@@ -9,16 +9,15 @@ import java.awt.*;
 import static com.demo.list.view.layouts.GridBagConstraintsBuilder.constraints;
 import static java.awt.GridBagConstraints.BOTH;
 
-public class LinkedListContainer extends BasePanel implements Observer {
+public class LinkedListContainer extends BaseComponent implements Observer {
 
     private final ObservableListState observableListState;
-    private final AppProperties props;
 
     public LinkedListContainer(
-            AppProperties textProvider,
+            AppProperties props,
             ObservableListState observableListState
     ) {
-        this.props = textProvider;
+        super(props);
         this.observableListState = observableListState;
         observableListState.addObserver(this);
         setLayout(new GridBagLayout());
@@ -34,7 +33,7 @@ public class LinkedListContainer extends BasePanel implements Observer {
     }
 
     private Component linkedListVisualizationPanel() {
-        return new ScrollableLinkedList(observableListState, getText("text.empty.list.content"));
+        return new ScrollableLinkedList(observableListState, string("text.empty.list.content"));
     }
 
     private void addChildrenComponents() {
@@ -42,10 +41,6 @@ public class LinkedListContainer extends BasePanel implements Observer {
                 linkedListVisualizationPanel(),
                 constraints(0, 0, 1, 1, BOTH, 1, 1)
         );
-    }
-
-    private String getText(String key) {
-        return props.string(key);
     }
 
 }
