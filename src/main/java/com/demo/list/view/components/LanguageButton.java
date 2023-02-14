@@ -15,13 +15,13 @@ class LanguageButton {
     public static Component create(Language language, ActionListener actionListener) {
         var button = ClickableButton.create();
         button.setMaximumSize(new Dimension(200, 100));
-        button.add(flagForLanguage(language));
-        button.add(label(language));
+        button.add(flagFor(language));
+        button.add(labelFor(language));
         button.addActionListener(actionListener);
         return button;
     }
 
-    private static Component label(Language language) {
+    private static Component labelFor(Language language) {
         var label = new JLabel(language.getLanguageName());
         label.setFont(new Font("Arial", PLAIN, 20));
         label.setBorder(createEmptyBorder(0, 50, 0, 0));
@@ -29,7 +29,7 @@ class LanguageButton {
         return label;
     }
 
-    private static Component flagForLanguage(Language language) {
+    private static Component flagFor(Language language) {
         return Resources.flagForLanguage(language);
     }
 
