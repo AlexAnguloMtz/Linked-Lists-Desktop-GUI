@@ -9,6 +9,8 @@ import javax.swing.*;
 
 import java.awt.*;
 import java.util.Map;
+import java.util.List;
+import java.util.function.Predicate;
 
 import static java.awt.Font.PLAIN;
 import static javax.swing.SwingConstants.CENTER;
@@ -28,44 +30,54 @@ public class SortingState extends BaseComponent implements Observer {
         this.observableListState = observableListState;
         this.renderConfigurations = initializeRenderConfigurations();
         observableListState.addObserver(this);
-        render();
+        render(observableListState);
     }
 
     @Override
     public void update() {
         removeAll();
-        render();
+        render(observableListState);
         validate();
         repaint();
     }
 
-    private void render() {
+    private void render(ObservableListState state) {
         setLayout(new BorderLayout());
-        configureLayoutForState(evaluateState());
+        configureLayoutForState(evaluateState(state));
     }
 
-    private State evaluateState() {
-        if (isListEmpty()) return State.EMPTY;
-        if (allEqual()) return State.ALL_EQUAL;
-        if (isSortedAscending()) return State.ASCENDING;
-        if (isSortedDescending()) return State.DESCENDING;
-        return State.UNSORTED;
+    private State evaluateState(ObservableListState state) {
+        return stateTests().stream()
+                .filter(test -> test.apply(state))
+                .map(StatePredicate::state)
+                .findFirst()
+                .orElseThrow(() -> new IllegalStateException("Cannot determine state for this component"));
     }
 
-    private boolean isListEmpty() {
-        return observableListState.isListEmpty();
+    private List<StatePredicate> stateTests() {
+        return List.of(
+                new StatePredicate(this::isListEmpty, State.EMPTY),
+                new StatePredicate(this::allEqual, State.ALL_EQUAL),
+                new StatePredicate(this::isSortedAscending, State.ASCENDING),
+                new StatePredicate(this::isSortedDescending, State.DESCENDING),
+                new StatePredicate(state -> true, State.UNSORTED)
+        );
     }
 
-    private boolean allEqual() {
-        return observableListState.allTheSame();
+    private boolean isListEmpty(ObservableListState state) {
+        return state.isListEmpty();
     }
 
-    private boolean isSortedAscending() {
-        return observableListState.isSorted((x, y) -> (((Integer) x) - ((Integer) y)) <= 0);
+    private boolean allEqual(ObservableListState state) {
+        return state.allTheSame();
     }
 
-    private boolean isSortedDescending() {
-        return observableListState.isSorted((x, y) -> (((Integer) x) - ((Integer) y)) >= 0);
+    private boolean isSortedAscending(ObservableListState state) {
+        return state.isSorted((x, y) -> (((Integer) x) - ((Integer) y)) <= 0);
+    }
+
+    private boolean isSortedDescending(ObservableListState state) {
+        return state.isSorted((x, y) -> (((Integer) x) - ((Integer) y)) >= 0);
     }
 
     private void configureLayoutForState(State state) {
@@ -110,6 +122,13 @@ public class SortingState extends BaseComponent implements Observer {
 
     private Color foregroundColor() {
         return color("on.list.sorting.state");
+    }
+
+
+    private record StatePredicate(Predicate<ObservableListState> test, State state) {
+        public boolean apply(ObservableListState state) {
+            return test.test(state);
+        }
     }
 
 }
