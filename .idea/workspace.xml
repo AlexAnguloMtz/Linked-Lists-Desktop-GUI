@@ -5,8 +5,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="5acbd817-fa40-45e3-9976-6c6ca2d29a0b" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/demo/list/util/Pair.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/demo/list/util/Pair.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/demo/list/util/Decision.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/demo/list/view/components/SortingState.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/demo/list/view/components/SortingState.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/demo/list/view/controllers/LinkedListOperationsController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/demo/list/view/controllers/LinkedListOperationsController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/demo/list/view/screens/MainScreen.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/demo/list/view/screens/MainScreen.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/demo/list/view/states/ObservableListState.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/demo/list/view/states/ObservableListState.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -34,14 +38,14 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "last_opened_file_path": "C:/Users/raul_/Documents/Programming/Linked-Lists-Desktop-GUI"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/raul_/Documents/Programming/Linked-Lists-Desktop-GUI&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CreateClassDialog.RecentsKey">
       <recent name="com.demo.list.view.components" />

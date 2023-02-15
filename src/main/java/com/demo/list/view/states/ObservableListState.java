@@ -42,15 +42,11 @@ public class ObservableListState implements Observable {
         observers.forEach(Observer::update);
     }
 
-    public MyLinkedList<Comparable<Integer>> getList() {
-        return list;
-    }
-
     public void addElementToList(int number) {
         executeAndNotifyAllObservers(() -> list.add(number));
     }
 
-    public void removeElementFromListAtIndex(int index) {
+    public void removeAtIndex(int index) {
         executeAndNotifyAllObservers(() -> list.remove(index));
     }
 
@@ -101,7 +97,7 @@ public class ObservableListState implements Observable {
         return new ObservableListState(list);
     }
 
-    public boolean isListEmpty() {
+    public boolean listIsEmpty() {
         return list.isEmpty();
     }
 
@@ -142,6 +138,30 @@ public class ObservableListState implements Observable {
         return list.isSorted(comparator);
     }
 
+    public boolean allEqual() {
+        return list.allEqual();
+    }
+
+    public boolean isSortedAscending() {
+        return isSorted((x, y) -> (((Integer) x) - ((Integer) y)) <= 0);
+    }
+
+    public boolean isSortedDescending() {
+        return isSorted((x, y) -> (((Integer) x) - ((Integer) y)) >= 0);
+    }
+
+    public boolean isOutOfBounds(int index) {
+        return lastIndex() < index || index < 0;
+    }
+
+    public boolean isGreaterOrEqualToMax(int number) {
+        return max() <= number;
+    }
+
+    public boolean isSmallerOrEqualToMin(int number) {
+        return min() >= number;
+    }
+
     private void setList(MyLinkedList<Comparable<Integer>> list) {
         this.list = list;
     }
@@ -159,7 +179,8 @@ public class ObservableListState implements Observable {
         return new MySortedLinkedList<>(comparison -> comparison < 0);
     }
 
-    public boolean allTheSame() {
-        return list.allEqual();
+    private int lastIndex() {
+        return listSize() - 1;
     }
+
 }

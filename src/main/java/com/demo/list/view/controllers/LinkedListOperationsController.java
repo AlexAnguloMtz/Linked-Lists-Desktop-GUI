@@ -7,7 +7,6 @@ import com.demo.list.view.states.ObservableListState;
 import java.awt.event.ActionEvent;
 import java.util.function.Consumer;
 
-import static com.demo.list.util.Decision.decide;
 import static com.demo.list.util.IntegerUtils.isInteger;
 import static java.lang.Integer.parseInt;
 import static java.lang.String.format;
@@ -45,23 +44,23 @@ public class LinkedListOperationsController {
     }
 
     public void onAddElement(String input) {
-        handleIntegerInputAction(input, state::addElementToList);
+        runIfIsInteger(input, state::addElementToList);
     }
 
     public void onRemoveElement(String input) {
-        handleIntegerInputAction(input, this::removeElement);
+        runIfIsInteger(input, this::removeElement);
     }
 
     public void onShowFirstAppearance(String input) {
-        handleIntegerInputAction(input, this::showFirstAppearance);
+        runIfIsInteger(input, this::showFirstAppearance);
     }
 
     public void onShowAllGreater(String input) {
-        handleIntegerInputAction(input, this::tryShowAllGreater);
+        runIfIsInteger(input, this::tryShowAllGreater);
     }
 
     public void onShowAllLess(String input) {
-        handleIntegerInputAction(input, this::tryShowAllLess);
+        runIfIsInteger(input, this::tryShowAllSmaller);
     }
 
     public void onNewUnsortedList(ActionEvent actionEvent) {
@@ -89,75 +88,67 @@ public class LinkedListOperationsController {
     }
 
     private boolean isOutOfBounds(int index) {
-        return listLastIndex() < index || index < 0;
-    }
-
-    private int listLastIndex() {
-        return state.listSize() - 1;
+        return state.isOutOfBounds(index);
     }
 
     private void handleNonExistentElement(int number) {
         showFormattedError("error.element.not.in.list", number);
     }
 
-    private void handleIntegerInputAction(String input, Consumer<Integer> consumer) {
-        decide(
-                isInteger(input),
-                () -> consumer.accept(parseInt(input)),
-                () -> handleNonIntegerInput(input)
-        );
+    private void runIfIsInteger(String input, Consumer<Integer> consumer) {
+        if (!isInteger(input)) {
+            handleNonIntegerInput(input);
+            return;
+        }
+        consumer.accept(parseInt(input));
     }
 
     private void removeElement(int number) {
-        decide(
-                (!isOutOfBounds(number)),
-                () -> state.removeElementFromListAtIndex(number),
-                () -> handleIndexOutOfBounds(number)
-        );
+        if(isOutOfBounds(number)) {
+            handleIndexOutOfBounds(number);
+            return;
+        }
+        state.removeAtIndex(number);
     }
 
     private void showFirstAppearance(int number) {
-        decide(
-                state.listContains(number),
-                () -> screen.showFirstAppearance(number),
-                () -> handleNonExistentElement(number)
-        );
+        if(!state.listContains(number)) {
+            handleNonExistentElement(number);
+            return;
+        }
+        screen.showFirstAppearance(number);
     }
 
     private void tryShowAllGreater(int number) {
-        handleListSizeDependentAction(() -> showAllGreaterThan(number));
+        runIfListIsNotEmpty(() -> showAllGreaterThan(number));
     }
 
-    private void tryShowAllLess(int number) {
-        handleListSizeDependentAction(() -> showAllLessThan(number));
+    private void tryShowAllSmaller(int number) {
+        runIfListIsNotEmpty(() -> showAllLessThan(number));
     }
 
-    private void handleListSizeDependentAction(Runnable runnable) {
-        decide((!state.isListEmpty()), runnable, this::handleEmptyList);
+    private void runIfListIsNotEmpty(Runnable runnable) {
+        if (state.listIsEmpty()) {
+            handleEmptyList();
+            return;
+        }
+        runnable.run();
     }
 
     private void showAllGreaterThan(int number) {
-        runOrShowError(
-                state.max() > number,
-                () -> screen.showAllGreaterThan(number),
-                formattedError("error.no.greater.elements", number)
-        ).run();
+        if (state.isGreaterOrEqualToMax(number)) {
+            showFormattedError("error.no.greater.elements", number);
+            return;
+        }
+        screen.showAllGreaterThan(number);
     }
 
     private void showAllLessThan(int number) {
-        runOrShowError(
-                state.min() < number,
-                () -> screen.showAllLessThan(number),
-                formattedError("error.no.smaller.elements", number)
-        ).run();
-    }
-
-    private String formattedError(String key, Object...objects) {
-        return format(string(key), objects);
-    }
-
-    private Runnable runOrShowError(boolean condition, Runnable runnable, String error) {
-        return (condition) ? (runnable) : (() -> showError(error));
+        if (state.isSmallerOrEqualToMin(number)) {
+            showFormattedError("error.no.smaller.elements", number);
+            return;
+        }
+        screen.showAllSmallerThan(number);
     }
 
     private void showFormattedError(String key, Object...objects) {

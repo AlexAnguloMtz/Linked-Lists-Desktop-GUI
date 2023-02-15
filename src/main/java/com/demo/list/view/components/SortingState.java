@@ -2,39 +2,24 @@ package com.demo.list.view.components;
 
 import com.demo.list.configuration.language.AppProperties;
 import com.demo.list.observer.Observer;
-import com.demo.list.util.Pair;
 import com.demo.list.view.states.ObservableListState;
 
 import javax.swing.*;
 
 import java.awt.*;
-import java.util.Map;
-import java.util.List;
-import java.util.function.Predicate;
 
 import static java.awt.Font.PLAIN;
 import static javax.swing.SwingConstants.CENTER;
 
 public class SortingState extends BaseComponent implements Observer {
 
-    private enum State {
-        ALL_EQUAL, ASCENDING, DESCENDING, UNSORTED, EMPTY
-    }
-
-    private record StatePredicate(Predicate<ObservableListState> test, State state) {
-        public boolean apply(ObservableListState state) {
-            return test.test(state);
-        }
-    }
+    private record Layout(String text, Color background) {}
 
     private final ObservableListState observableListState;
-
-    private final Map<State, Pair<String, Color>> renderConfigurations;
 
     public SortingState(ObservableListState observableListState, AppProperties props) {
         super(props);
         this.observableListState = observableListState;
-        this.renderConfigurations = initializeRenderConfigurations();
         observableListState.addObserver(this);
         render(observableListState);
     }
@@ -49,85 +34,44 @@ public class SortingState extends BaseComponent implements Observer {
 
     private void render(ObservableListState state) {
         setLayout(new BorderLayout());
-        configureLayoutForState(evaluateState(state));
+        configureWith(layoutFor(state));
     }
 
-    private State evaluateState(ObservableListState state) {
-        return stateTests().stream()
-                .filter(test -> test.apply(state))
-                .map(StatePredicate::state)
-                .findFirst()
-                .orElseThrow(() -> new IllegalStateException("Cannot determine state for this component"));
+    private Layout layoutFor(ObservableListState state) {
+        if (state.listIsEmpty())
+            return layout("text.description.list.empty", "neutral");
+
+        if (state.allEqual())
+            return layout("text.description.list.neutral", "neutral");
+
+        if (state.isSortedAscending())
+            return layout("text.description.list.ascending", "ascending");
+
+        if (state.isSortedDescending())
+            return layout("text.description.list.descending", "descending");
+
+        return layout("text.description.list.unsorted", "unsorted");
     }
 
-    private List<StatePredicate> stateTests() {
-        return List.of(
-                new StatePredicate(this::isListEmpty, State.EMPTY),
-                new StatePredicate(this::allEqual, State.ALL_EQUAL),
-                new StatePredicate(this::isSortedAscending, State.ASCENDING),
-                new StatePredicate(this::isSortedDescending, State.DESCENDING),
-                new StatePredicate(state -> true, State.UNSORTED)
-        );
+    private Layout layout(String stringKey, String colorKey) {
+        return new Layout(string(stringKey), color(colorKey));
     }
 
-    private boolean isListEmpty(ObservableListState state) {
-        return state.isListEmpty();
+    private void configureWith(Layout layout) {
+        setBackground(layout.background());
+        add(labelFor(layout.text()), BorderLayout.CENTER);
     }
 
-    private boolean allEqual(ObservableListState state) {
-        return state.allTheSame();
-    }
-
-    private boolean isSortedAscending(ObservableListState state) {
-        return state.isSorted((x, y) -> (((Integer) x) - ((Integer) y)) <= 0);
-    }
-
-    private boolean isSortedDescending(ObservableListState state) {
-        return state.isSorted((x, y) -> (((Integer) x) - ((Integer) y)) >= 0);
-    }
-
-    private void configureLayoutForState(State state) {
-        setBackground(backgroundFor(state));
-        add(labelFor(state), BorderLayout.CENTER);
-    }
-
-    private Color backgroundFor(State state) {
-        return config(state).right();
-    }
-
-    private JLabel labelFor(State state) {
-        var label = new JLabel(textFor(state));
+    private JLabel labelFor(String text) {
+        var label = new JLabel(text);
         label.setFont(new Font("Arial", PLAIN, 30));
         label.setForeground(foregroundColor());
         label.setHorizontalAlignment(CENTER);
         return label;
     }
 
-    private String textFor(State state) {
-        return config(state).left();
-    }
-
-    private Pair<String, Color> config(State state) {
-        return renderConfigurations.get(state);
-    }
-
-    private Map<State, Pair<String, Color>> initializeRenderConfigurations() {
-        return Map.of(
-                State.EMPTY, config("text.description.list.empty", "neutral"),
-                State.ALL_EQUAL, config("text.description.list.neutral", "neutral"),
-                State.ASCENDING, config("text.description.list.ascending", "ascending"),
-                State.DESCENDING, config("text.description.list.descending", "descending"),
-                State.UNSORTED, config("text.description.list.unsorted", "unsorted")
-        );
-    }
-
-    private Pair<String, Color> config(String stringKey, String colorKey) {
-        return Pair.of(string(stringKey), color(colorKey));
-    }
-
     private Color foregroundColor() {
         return color("on.list.sorting.state");
     }
-
 
 }

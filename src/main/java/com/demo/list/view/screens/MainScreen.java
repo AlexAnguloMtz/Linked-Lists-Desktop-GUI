@@ -31,7 +31,7 @@ public class MainScreen extends Screen {
         return "MAIN_SCREEN";
     }
 
-    public void showAllLessThan(int number) {
+    public void showAllSmallerThan(int number) {
         scrollableLinkedListWindowComponent.show(
                 string("text.window.all.less.title"),
                 format(string("text.window.all.less.header"), number),
